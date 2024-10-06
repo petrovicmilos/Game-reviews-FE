@@ -1,0 +1,20 @@
+button {
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    background-color: var(--bg-color, #b77a37); /* Boja pozadine */
+    color: var(--text-color, white); /* Boja teksta */
+    font-weight: 600;
+    font-size: var(--font-size, 15px);
+    padding: var(--padding, 18px 30px);
+    transition: background-position 0.4s ease-in-out;
+    background: linear-gradient(to right, var(--bg-color, #9b6530) 50%, var(--hover-color, #b77a37) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+  }
+  
+  button:hover {
+    background-position: left bottom; /* Pomeri gradient na hover */
+  }
+  

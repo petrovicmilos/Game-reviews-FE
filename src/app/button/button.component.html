@@ -1,0 +1,12 @@
+<button
+  (click)="handleClick($event)"
+  [ngStyle]="{
+    '--bg-color': color,
+    '--hover-color': hoverColor,
+    '--text-color': textColor,
+    '--padding': padding,
+    '--font-size': fontSize
+  }"
+>
+  {{ text }}
+</button>
