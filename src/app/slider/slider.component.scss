@@ -1,0 +1,55 @@
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    padding:  40px;
+    margin: 20px auto;
+  
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+  
+      h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+      }
+  
+      .slider-controls {
+        display: flex;
+        gap: 10px; // Razmak između dugmadi
+      }
+    }
+  
+    .cards-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+  
+    .arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  
+      &:hover {
+        background: #e0e0e0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+  
+      &.prev {
+        margin-right: 10px;
+      }
+    }
+  }
+  

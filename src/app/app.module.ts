@@ -7,13 +7,19 @@ import { HeaderComponentComponent } from './header-component/header-component.co
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from './button/button.component';
+import { SliderComponent } from './slider/slider.component';
+import { CardComponent } from './card/card.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponentComponent,
-    ButtonComponent
+    ButtonComponent,
+    SliderComponent,
+    CardComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
