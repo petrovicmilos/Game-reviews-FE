@@ -1,0 +1,23 @@
+<header class="header">
+    <div class="logo">
+        <a href="#"><img src="./assets/gameflare logo.svg" alt="logo"></a>
+    </div>
+    <nav class="nav">
+        <ul>
+            <li *ngFor="let item of menuItems"><a [routerLink]="item.link">{{ item.title }}</a></li>
+        </ul>
+    </nav>
+    <div class="search-register-elements">
+        <div class="search-bar">
+            <form action="#">
+                <input type="search" placeholder="Search">
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </form>
+        </div>
+        <div class="register-button">
+            <app-button text="Register" type="router" routerLink="/register" color="#9b6530" hoverColor="#b77a37"
+                textColor="white" padding="18px 30px" fontSize="16px"></app-button>
+
+        </div>
+    </div>
+</header>

@@ -1,0 +1,135 @@
+@import '../../styles/colors.scss';
+
+$min-height: 60px;
+
+header {
+    background-color: $background-color;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: $min-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+        width: 180px;
+    }
+
+    nav {
+
+        font-weight: 100;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+
+            li {
+                margin-right: 20px;
+                font-size: 20px;
+                padding: 20px;
+
+                a {
+                    text-decoration: none;
+                    color: #ffffff;
+                    /* Početna boja teksta je bela */
+                    background: linear-gradient(to right, #b77a37 0%, #b77a37 50%, #ffffff 50%);
+                    /* Definiši gradient za hover */
+                    background-size: 200% 100%;
+                    /* Pozadina je dva puta veća od teksta */
+                    background-clip: text;
+                    /* Clip pozadina unutar teksta */
+                    -webkit-background-clip: text;
+                    /* Clip pozadina unutar teksta za WebKit */
+                    color: transparent;
+                    /* Sakrij osnovnu boju teksta */
+                    transition: background-position 0.3s ease-in-out;
+                    /* Dodaj tranziciju */
+                    background-position: 100% -100%;
+                    /* Pozicioniraj pozadinu na početak */
+                }
+
+                a:hover {
+                    background-position: 0 100%;
+                    /* Pomeri gradient na hover, sa leva na desno */
+                }
+            }
+        }
+    }
+
+    .search-register-elements {
+        display: flex;
+        align-items: center;
+
+        .search-bar {
+            position: relative;
+            width: 400px;
+
+            input {
+                border: none;
+                width: 100%;
+                padding: 18px 100px 18px 20px;
+                display: block;
+                border-radius: 6px;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            /* Uklanjanje 'X' dugmeta u Chrome, Safari i Edge */
+            input[type="search"]::-webkit-search-cancel-button {
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            /* Uklanjanje 'X' dugmeta u Firefox */
+            input[type="search"]::-moz-search-clear-button {
+                display: none;
+            }
+
+            /* Uklanjanje outline-a specifično za search input */
+            input[type="search"]:focus {
+                outline: none;
+                /* Uklanja outline samo za search input */
+            }
+
+            fa-icon {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 20px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 18px 20px;
+                z-index: 2;
+                color: #b77a37;
+                /* Postavi boju ikone */
+            }
+        }
+
+        .register-button {
+            margin-left: 10px;
+
+            button {
+                padding: 18px 30px;
+                border: none;
+                border-radius: 6px;
+                display: block;
+                background: linear-gradient(to right, #9b6530 50%, #b77a37 50%); /* Inicijalni gradient */
+                background-size: 200% 100%; /* Veličina gradienta */
+                background-position: right bottom; /* Početna pozicija */
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background-position 0.4s ease-in-out; /* Glatka tranzicija */
+              }
+              
+              button:hover {
+                background-position: left bottom; /* Pomeranje gradienta na hover */
+              }
+              
+        }
+    }
+}

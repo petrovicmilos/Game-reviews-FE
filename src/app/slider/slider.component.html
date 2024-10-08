@@ -1,0 +1,25 @@
+<div class="slider-container">
+    <div class="slider-header">
+      <h2>New and Notable</h2>
+      <div class="slider-controls">
+        <button class="arrow prev" (click)="prevCard()">&#x2190;</button>
+        <button class="arrow next" (click)="nextCard()">&#x2192;</button>
+      </div>
+    </div>
+    <div class="cards-wrapper">
+      <app-card
+        *ngFor="let card of cards; let i = index"
+        [title]="card.title"
+        [category]="card.category"
+        [score]="card.score"
+        [scoreText]="card.scoreText"
+        [reviews]="card.reviews"
+        [imageUrl]="card.imageUrl"
+        [status]="card.status"
+        [borderColor]="card.borderColor"
+        [ngStyle]="{ transform: 'translateX(' + (-currentIndex * 250) + 'px)' }"
+      >
+      </app-card>
+    </div>
+  </div>
+  
