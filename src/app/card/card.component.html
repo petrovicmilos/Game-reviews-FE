@@ -1,17 +1,17 @@
-<div class="card-container" [style.border-top]="borderColor">
-    <div class="card-image">
-      <img [src]="imageUrl" alt="Card image" />
-    </div>
-    <div class="card-content">
-      <h3>{{ title }}</h3>
-      <span class="category">{{ category }}</span>
-      <div class="card-footer">
-        <span class="score-text">METASCORE</span>
-        <div class="score" [style.background]="borderColor">
-          {{ score }}
-        </div>
-        <p class="status">{{ status }}</p>
-        <span class="reviews">Based on {{ reviews }} Critic Reviews</span>
+<div class="card-container" [style.border-top-color]="getBorderColor()">
+  <div class="card-image">
+    <img [src]="imageUrl" alt="Card image" />
+  </div>
+  <div class="card-content" [routerLink]="">
+    <h3>{{ title }}</h3>
+    <span class="category">{{ category }}</span>
+    <div class="card-footer">
+      <span class="score-text">GAME SCORE</span>
+      <div class="score" [style.background]="getBorderColor()">
+        {{ score }}
       </div>
+      <p class="status">{{ status }}</p>
+      <span class="reviews">Based on {{ reviews }} Critic Reviews</span>
     </div>
-  </div>  
+  </div>
+</div>

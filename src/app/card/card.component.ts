@@ -8,10 +8,20 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() title: string = ''; // Naslov kartice
   @Input() category: string = ''; // Kategorija (npr. "game", "movie")
-  @Input() score: number = 0; // Metascore
-  @Input() scoreText: string = ''; // Tekst ispod Metascore-a
+  @Input() score: number = 0; // Score vrednost
+  @Input() scoreText: string = ''; // Tekst ispod score-a
   @Input() reviews: number = 0; // Broj recenzija
   @Input() imageUrl: string = ''; // Slika kartice
   @Input() status: string = ''; // Status recenzije (npr. "Mixed", "Generally Favorable")
-  @Input() borderColor: string = '#000'; // Boja okvira kartice
+
+  // Metoda koja određuje boju na osnovu score vrednosti
+  getBorderColor(): string {
+    if (this.score >= 70) {
+      return '#00ce7a'; // Zelena boja
+    } else if (this.score >= 50) {
+      return '#ffbd3f'; // Žuta boja
+    } else {
+      return '#ff6874'; // Crvena boja
+    }
+  }
 }
