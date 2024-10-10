@@ -8,6 +8,24 @@ import { Component } from '@angular/core';
 export class SliderComponent {
   cards = [
     {
+      title: 'Metaphor: ReFantazio',
+      category: 'game',
+      score: 94,
+      scoreText: 'Generally Favorable',
+      reviews: 36,
+      imageUrl: './assets/Metaphor ReFantazio.jpg',
+      status: 'Based on 36 Critic Reviews'
+    },
+    {
+      title: 'Dragon Ball: Sparking! Zero',
+      category: 'Arena Fighter',
+      score: 83,
+      scoreText: 'Mixed or Average',
+      reviews: 55,
+      imageUrl: './assets/Dragon Ball Sparking Zero.jpg',
+      status: 'Based on 55 Critic Reviews'
+    },
+    {
       title: 'Diablo IV: Vessel of Hatred',
       category: 'Action role-playing',
       score: 85,
@@ -26,30 +44,21 @@ export class SliderComponent {
       status: 'Based on 12 Critic Reviews'
     },
     {
-      title: 'Joker: Folie à Deux',
+      title: 'Phoenix Springs',
       category: 'game',
-      score: 45,
-      scoreText: 'Mixed or Average',
-      reviews: 59,
-      imageUrl: './assets/Silent Hill 2.jpg',
-      status: 'Based on 59 Critic Reviews'
-    },
-    {
-      title: 'The Franchise',
-      category: 'game',
-      score: 61,
+      score: 74,
       scoreText: 'Generally Favorable',
       reviews: 24,
-      imageUrl: './assets/Silent Hill 2.jpg',
+      imageUrl: './assets/Phoenix Springs.jpg',
       status: 'Based on 24 Critic Reviews'
     },
     {
-      title: 'The Franchise 2',
+      title: 'NHL 25',
       category: 'game',
-      score: 61,
+      score: 67,
       scoreText: 'Generally Favorable',
       reviews: 24,
-      imageUrl: './assets/Silent Hill 2.jpg',
+      imageUrl: './assets/NHL 25_2.jpg',
       status: 'Based on 24 Critic Reviews'
     },
     {
@@ -96,6 +105,24 @@ export class SliderComponent {
       reviews: 120,
       imageUrl: './assets/lastofus.jpg',
       status: 'Based on 120 Critic Reviews'
+    },
+    {
+      title: 'Elden Ring',
+      category: 'Action RPG',
+      score: 95,
+      scoreText: 'Universal Acclaim',
+      reviews: 100,
+      imageUrl: './assets/eldenring.jpg',
+      status: 'Based on 100 Critic Reviews'
+    },
+    {
+      title: 'Elden Ring',
+      category: 'Action RPG',
+      score: 95,
+      scoreText: 'Universal Acclaim',
+      reviews: 100,
+      imageUrl: './assets/eldenring.jpg',
+      status: 'Based on 100 Critic Reviews'
     }
   ];
 
