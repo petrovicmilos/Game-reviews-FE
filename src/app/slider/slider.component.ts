@@ -98,32 +98,4 @@ export class SliderComponent {
       status: 'Based on 120 Critic Reviews'
     }
   ];
-
-  itemsPerPage = 4; // Broj kartica po prikazu
-  currentIndex = 0; // Trenutni početni indeks prikaza
-
-  // Funkcija za prebacivanje na sledeću grupu kartica
-  nextCard() {
-    if (this.currentIndex + this.itemsPerPage < this.cards.length) {
-      this.currentIndex += this.itemsPerPage;
-    }
-  }
-
-  // Funkcija za prebacivanje na prethodnu grupu kartica
-  prevCard() {
-    if (this.currentIndex > 0) {
-      this.currentIndex -= this.itemsPerPage;
-    }
-  }
-
-  // Metoda za dodavanje klase na osnovu trenutnog index-a
-  getArrowClass(direction: 'left' | 'right'): string {
-    if (direction === 'left' && this.currentIndex === 0) {
-      return 'inactive'; // Leva strelica je neaktivna ako smo na početnoj grupi
-    } else if (direction === 'right' && this.currentIndex + this.itemsPerPage >= this.cards.length) {
-      return 'inactive'; // Desna strelica je neaktivna ako smo na poslednjoj grupi
-    } else {
-      return 'active'; // Inače je strelica aktivna
-    }
-  }
 }

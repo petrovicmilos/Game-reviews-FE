@@ -1,66 +1,56 @@
-.slider-container {
-  position: relative;
-  overflow: hidden;
-  width: 70%;
-  padding: 40px;
-  margin: 20px auto;
+.splide {
+  width: 80%;  /* Slajder koristi punu širinu */
+  margin: 0 auto;
+  position: relative; /* Potrebno da apsolutno pozicionirane strelice budu unutar slajdera */
 
-  .slider-header {
+  .splide__track {
+    padding: 20px 0;
+  }
+
+  .splide__list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 2px solid black;
-    padding: 0 0 10px 0;
-
-    h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .slider-controls {
-      display: flex;
-      gap: 10px;
-    }
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 5px; /* Smanji razmak između kartica */
   }
 
-  .wrap {
-    width: calc(375px * 4); // Postavi širinu za 4 kartice (4 kartice * širina 330px)
-    overflow: hidden;
+  .splide__slide {
+    padding: 0;
+    flex-shrink: 1;
+    width: 300px; /* Uskladi sa širinom kartica */
   }
 
-  .cards-wrapper {
+  // .splide__pagination {
+  //   display: flex;
+  //   justify-content: center;
+  //   margin-top: 15px;
+  // }
+
+  // .splide__pagination__page {
+  //   background-color: #ccc;
+  //   width: 12px;
+  //   height: 12px;
+  //   margin: 0 5px;
+  //   border-radius: 50%;
+  //   cursor: pointer;
+  // }
+
+  // .splide__pagination__page.is-active {
+  //   background-color: #00ce7a;
+  // }
+
+  /* Stilovi za strelice */
+  .splide__arrows {
     display: flex;
-    transition: transform 0.8s ease-in-out;
+    justify-content: right;
   }
 
-  .arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: 1px solid #b77a37;
-    color: #b77a37;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  // .splide__arrow--prev {
+  //   right: 70px; /* Razmak između strelica */
+  // }
 
-    &.inactive {
-      border: 2px solid transparent;
-      cursor: not-allowed;
-      background: transparent;
-      color: rgba(0, 0, 0, 0.2);
-      box-shadow: none;
-    }
-
-    &:hover {
-      background: #e0e0e0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-  }
+  // .splide__arrow--next {
+  //   right: 20px; /* Poravnaj desnu strelicu uz ivicu */
+  // }
 }

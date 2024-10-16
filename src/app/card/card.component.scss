@@ -1,12 +1,12 @@
 .card-container {
-    border-top: 4px solid;
-    border-radius: 10px;
-    width: 320px;
-    background: #f9f9f9;
-    margin: 10px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    height: 400px;
-    padding: 15px;
+  border-top: 4px solid;
+  border-radius: 10px;
+  width: 300px; /* Smanji širinu kartica */
+  background: #f9f9f9;
+  margin: 0 15px; /* Smanji marginu kako bi se kartice bolje uklopile */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  height: 400px;
+  padding: 15px;
   
     .card-image {
       img {
