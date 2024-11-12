@@ -7,9 +7,12 @@ import { HeaderComponentComponent } from './header-component/header-component.co
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from './button/button.component';
-import { SliderComponent } from './slider/slider.component';
+import { BannerComponent } from './banner/banner.component';
 import { CardComponent } from './card/card.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { BannerMenuComponent } from './banner-menu/banner-menu.component';
+import { TrendingComponent } from './trending/trending.component';
+import { LatestReviewsComponent } from './latest-reviews/latest-reviews.component';
 
 
 @NgModule({
@@ -17,9 +20,12 @@ import { HomepageComponent } from './homepage/homepage.component';
     AppComponent,
     HeaderComponentComponent,
     ButtonComponent,
-    SliderComponent,
+    BannerComponent,
     CardComponent,
-    HomepageComponent
+    HomepageComponent,
+    BannerMenuComponent,
+    TrendingComponent,
+    LatestReviewsComponent
   ],
   imports: [
     BrowserModule,

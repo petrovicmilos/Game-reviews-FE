@@ -1,0 +1,18 @@
+.banner-menu {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5%;
+    margin-top: -300px;
+    
+
+    .banner-menu-item1, .banner-menu-item2, .banner-menu-item3 {
+        width: 30%;
+        height: 350px;
+        background-color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 6px;
+    }
+
+    
+}
