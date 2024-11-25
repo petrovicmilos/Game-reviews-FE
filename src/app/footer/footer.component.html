@@ -1,0 +1,11 @@
+<div class="footer">
+    <div class="footer_content">
+        <div class="footer_content_left"><a href="#"><img src="./assets/gameflare logo.svg" alt="logo"></a></div>
+        <div class="footer_content_right">
+            <ul>
+                <li *ngFor="let item of menuItems"><a [routerLink]="item.link">{{ item.title }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright"><p>Copyright &copy; 2024 Gameflare.com</p></div>
+</div>

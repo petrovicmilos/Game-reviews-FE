@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { BannerMenuComponent } from './banner-menu/banner-menu.component';
 import { TrendingComponent } from './trending/trending.component';
 import { LatestReviewsComponent } from './latest-reviews/latest-reviews.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LatestReviewsComponent } from './latest-reviews/latest-reviews.componen
     HomepageComponent,
     BannerMenuComponent,
     TrendingComponent,
-    LatestReviewsComponent
+    LatestReviewsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

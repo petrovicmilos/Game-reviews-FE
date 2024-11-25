@@ -1,0 +1,68 @@
+@import '../../styles/colors.scss';
+
+.footer {
+    height: 200px;
+    background-color: $background-color;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .footer_content {
+        height: 70%;
+        display: flex;
+        justify-content: space-between;
+
+        .footer_content_left {
+            width: 150px;
+            padding: 3% 0 0 5%;
+        }
+
+        .footer_content_right {
+            padding: 2% 5% 0 0;
+
+            ul {
+                list-style-type: none;
+                li {
+                    position: relative;
+                    z-index: 10; // Stavlja linkove iznad drugih elemenata
+                    a {
+                        color: white;
+                    background: linear-gradient(to right, #b77a37 0%, #b77a37 50%, #ffffff 50%);
+                    /* Definiši gradient za hover */
+                    background-size: 200% 100%;
+                    /* Pozadina je dva puta veća od teksta */
+                    background-clip: text;
+                    /* Clip pozadina unutar teksta */
+                    -webkit-background-clip: text;
+                    /* Clip pozadina unutar teksta za WebKit */
+                    color: transparent;
+                    /* Sakrij osnovnu boju teksta */
+                    transition: background-position 0.3s ease-in-out;
+                    /* Dodaj tranziciju */
+                    background-position: 100% -100%;
+                    /* Pozicioniraj pozadinu na početak */
+                }
+
+                a:hover {
+                    background-position: 0 100%;
+                    /* Pomeri gradient na hover, sa leva na desno */
+                }
+                }
+
+                li:not(:first-child) {
+                    margin-top: 10px;
+                }
+                    
+            }
+        }
+    }
+
+    .copyright {
+        color: white;
+        font-style: italic;
+        display: flex;
+        justify-content: center;
+        vertical-align: bottom;
+        height: 30%;
+    }
+}
