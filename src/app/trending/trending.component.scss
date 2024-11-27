@@ -1,59 +1,191 @@
+@import '../../styles/styles.scss';
+@import '../../styles/colors.scss';
+
 .trending {
-    margin: 0 auto;
-    margin-top: 60px;
-    width: 100%;
+  margin: 60px auto 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    font-size: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+  }
+
+  .trending_content {
     display: flex;
     flex-direction: column;
-    // padding: 0 50px;
-    
 
-    h3 {
-        font-size: 30px;
-        padding: 0 0 15px 0;
-        border-bottom: 1px solid black;
-        
+    .trending_content_upper {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 20px; // Dodato za vizualni razmak između elemenata
+
+      > div {
+        border-radius: $border-radius;
+      }
+
+      .trending_large_content {
+        width: 50%;
+        height: 500px;
+        background: url("../../assets/witcher cover.jpg") center / cover no-repeat;
+        cursor: pointer;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        position: relative; /* Dodaj da omogući korišćenje ::before */
+        overflow: hidden; /* Sprečava izlazak pseudo-elementa iz granica */
+      
+        h2 {
+          margin: 0;
+          padding: 15px;
+          text-align: center;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+          transition: color 0.3s ease;
+          z-index: 2; /* Osiguraj da tekst ostane iznad pozadinskog efekta */
+        }
+      
+        /* Zatamnjenje na hover */
+        &:hover::before {
+          opacity: 0.1; /* Blago zatamnjenje */
+        }
+      
+        /* Pseudo-element za pozadinsko zatamnjenje */
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: black; /* Tamna pozadina */
+          opacity: 0; /* Nevidljivo dok nije hover */
+          transition: opacity 0.3s ease; /* Glatka tranzicija */
+          z-index: 1; /* Pozicionirano ispod teksta */
+        }
+      
+        &:hover h2 {
+          color: $hover-color-links; /* Promena boje teksta na hover */
+        }
+      }
+
+      .trending_recent_news {
+        width: 50%;
+        // border: 1px solid;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .trending_recent_news_article {
+            height: 30%;
+            // border: 1px solid;
+            width: 80%;
+            border-radius: $border-radius;
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+
+            &:hover {
+              color: $hover-color-links;
+            }
+            
+            .trending_recent_news_article_left {
+                height: 40%;
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                margin-right: 10px;
+
+                img {
+                    height: 100%;
+                    width: 50%;
+                }
+            }
+
+            .trending_recent_news_article_right {
+                height: 100%;
+                width: 30%;
+                
+                h4 {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+            
+        }
+      }
     }
 
-   .trending_content {
-    display: flex;
-    flex-direction: column;
-    
+    .trending_content_lower {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 10px;
 
-        .trending_content_upper {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex: 1 1 auto;
-            
+      > div {
+        border-radius: $border-radius;
+      }
 
-            .trending_large_content {
-                width: 50%;
-                border: 1px solid;
-                height: 500px;
-            }
-
-            .trending_recent_news {
-                width: 50%;
-                border: 1px solid;
-                height: 500px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+      .trending_content_lower_box {
+        border: 1px solid;
+        height: 200px;
+        min-width: 22%;
+        position: relative;
+        overflow: hidden; /* Sprečava izlazak pseudo-elementa iz box-a */
+        cursor: pointer;
+      
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Slika lepo zauzima prostor bez deformacije */
         }
-
-        .trending_content_lower {
-            border: 1px solid;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            padding: 10px;
-
-            .trending_content_lower_box{
-                border: 1px solid;
-                height: 200px;
-                min-width: 22%;
-            }
+      
+        /* Tekst preko slike */
+        div {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          text-align: center;
+          background: rgba(0, 0, 0, 0.5); /* Poluprovidna crna pozadina */
+          color: white;
+          padding: 10px 0;
+          font-weight: bold;
+          z-index: 2; /* Tekst je iznad slike i pozadinskog efekta */
+          transition: color 0.3s ease; /* Glatka promena boje teksta */
         }
-   }
+      
+        /* Hover efekat */
+        &:hover {
+          &::before {
+            opacity: 0.3; /* Zatamnjenje pozadine */
+          }
+      
+          div {
+            color: $hover-color-links; /* Promena boje teksta */
+          }
+        }
+      
+        /* Pseudo-element za pozadinsko zatamnjenje */
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: black; /* Crna boja za zatamnjenje */
+          opacity: 0; /* Skriveno dok nije hover */
+          transition: opacity 0.3s ease; /* Glatka tranzicija zatamnjenja */
+          z-index: 1; /* Pozadina je ispod teksta */
+        }
+      }      
+    }
+  }
 }

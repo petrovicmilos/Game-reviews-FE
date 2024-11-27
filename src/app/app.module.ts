@@ -14,6 +14,9 @@ import { BannerMenuComponent } from './banner-menu/banner-menu.component';
 import { TrendingComponent } from './trending/trending.component';
 import { LatestReviewsComponent } from './latest-reviews/latest-reviews.component';
 import { FooterComponent } from './footer/footer.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { PostComponent } from './post/post.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { FooterComponent } from './footer/footer.component';
     BannerMenuComponent,
     TrendingComponent,
     LatestReviewsComponent,
-    FooterComponent
+    FooterComponent,
+    ReviewsComponent,
+    PostComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

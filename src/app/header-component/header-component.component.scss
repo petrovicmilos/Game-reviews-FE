@@ -33,7 +33,7 @@ header {
                     text-decoration: none;
                     color: #ffffff;
                     /* Početna boja teksta je bela */
-                    background: linear-gradient(to right, #b77a37 0%, #b77a37 50%, #ffffff 50%);
+                    background: linear-gradient(to right, $hover-color-links 0%, $hover-color-links 50%, #ffffff 50%);
                     /* Definiši gradient za hover */
                     background-size: 200% 100%;
                     /* Pozadina je dva puta veća od teksta */
@@ -116,7 +116,7 @@ header {
                 border: none;
                 border-radius: 6px;
                 display: block;
-                background: linear-gradient(to right, #9b6530 50%, #b77a37 50%); /* Inicijalni gradient */
+                background: linear-gradient(to right, $hover-color-button 50%, $hover-color-links 50%); /* Inicijalni gradient */
                 background-size: 200% 100%; /* Veličina gradienta */
                 background-position: right bottom; /* Početna pozicija */
                 color: white;
