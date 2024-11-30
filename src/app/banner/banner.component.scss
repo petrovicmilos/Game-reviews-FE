@@ -2,19 +2,20 @@
     width: 100%;
     min-height: 85vh;
     display: flex;
-    justify-content: left;
-    background-image: url("../../assets/banner\ 1.jpg");
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../../assets/banner 3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: fit;
     align-items: center;
+    position: relative;
 
     h1 {
         font-size: 100px;
-        margin-top: -100px;
-        margin-left: 5%;
         color: #fff;
         letter-spacing: .5rem;
+        margin-top: -200px;
 
         -webkit-touch-callout: none;
         /* iOS Safari */
@@ -86,5 +87,15 @@
             text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
             color: #fff6a9;
         }
+    }
+
+    app-banner-menu {
+        position: absolute;
+        bottom: 0;
+        margin-bottom: -60px;
+        display: flex;
+        justify-content: space-around;
+        height: 350px;
+        width: 100%;
     }
 }

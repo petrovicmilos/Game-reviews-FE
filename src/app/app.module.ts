@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { PostComponent } from './post/post.component';
 import { NewsComponent } from './news/news.component';
+import { ReviewDetailComponent } from './review-detail/review-detail.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NewsComponent } from './news/news.component';
     FooterComponent,
     ReviewsComponent,
     PostComponent,
-    NewsComponent
+    NewsComponent,
+    ReviewDetailComponent
   ],
   imports: [
     BrowserModule,

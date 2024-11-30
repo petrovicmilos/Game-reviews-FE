@@ -1,5 +1,10 @@
 .main_container {
 
+  app-banner-menu {
+    display: flex;
+    justify-content: center;
+  }
+
     .page_content {
       max-width: 1144px;
       margin: 0 auto;

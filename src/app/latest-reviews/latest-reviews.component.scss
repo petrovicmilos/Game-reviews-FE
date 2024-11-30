@@ -1,10 +1,14 @@
+@import '../../styles/colors.scss';
+@import '../../styles/styles.scss';
+
 .latest_reviews {
     margin: 0 auto;
     margin-top: 60px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: 600px;
+    height: auto;
+    margin-bottom: 5%;
 
     .latest_reviews_headline {
         display: flex;
@@ -23,48 +27,208 @@
         }
     }
 
-    
+
 
     .latest_reviews_content {
         display: flex;
-        justify-content: space-around;
+        // justify-content: space-between;
         margin-top: 30px;
-    
+
         .latest_reviews_content_left {
             display: flex;
             flex-direction: column;
-            border: 1px solid;
             height: 100%;
-            width: 50%;
+            width: 60%;
 
             .latest_reviews_content_left_large {
-                border: 1px solid;
                 height: 60%;
+                position: relative;
+                overflow: hidden; /* Sprečava izlazak pseudo-elementa iz box-a */
+                cursor: pointer;
+                border-radius: $border-radius;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                /* Tekst preko slike */
+                div {
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100%;
+                    text-align: center;
+                    // background: rgba(0, 0, 0, 0.5);
+                    /* Poluprovidna crna pozadina */
+                    color: white;
+                    padding: 10px 0;
+                    font-weight: bold;
+                    z-index: 2;
+                    /* Tekst je iznad slike i pozadinskog efekta */
+                    transition: color 0.3s ease;
+                    /* Glatka promena boje teksta */
+
+                    h2 {
+                        margin: 0;
+                        padding: 15px;
+                        text-align: center;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+                        transition: color 0.3s ease;
+                        z-index: 2; /* Osiguraj da tekst ostane iznad pozadinskog efekta */
+                      }
+                }
+
+                &:hover::before {
+                    opacity: 0.1; /* Blago zatamnjenje */
+                  }
+
+                  &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: black; /* Tamna pozadina */
+                    opacity: 0; /* Nevidljivo dok nije hover */
+                    transition: opacity 0.3s ease; /* Glatka tranzicija */
+                    z-index: 1; /* Pozicionirano ispod teksta */
+                  }
+
+                  &:hover h2 {
+                    color: $hover-color-links; /* Promena boje teksta na hover */
+                  }
             }
 
             .latest_reviews_content_left_grid {
-                border: 1px solid;
-                height: 40%;
+                height: 150px;
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
-                padding: 10px;
+                margin-top: 10px;
 
                 .latest_reviews_content_left_grid_box {
-                    border: 1px solid;
-                    width: 30%;
-                    
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden; 
+                    border-radius: $border-radius;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    div {
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 100%;
+                        text-align: center;
+                        background: rgba(0, 0, 0, 0.5);
+                        /* Poluprovidna crna pozadina */
+                        color: white;
+                        padding: 10px 5px;
+                        font-weight: bold;
+                        z-index: 2;
+                        /* Tekst je iznad slike i pozadinskog efekta */
+                        transition: color 0.3s ease;
+                        /* Glatka promena boje teksta */
+    
+                        h6 {
+                            margin: 0;
+                            // padding: 15px;
+                            text-align: center;
+                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+                            transition: color 0.3s ease;
+                            z-index: 2; /* Osiguraj da tekst ostane iznad pozadinskog efekta */
+                            padding: 10px;
+                          }
+                    }
+
+                    &:hover::before {
+                        opacity: 0.1; /* Blago zatamnjenje */
+                      }
+    
+                      &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: black; /* Tamna pozadina */
+                        opacity: 0; /* Nevidljivo dok nije hover */
+                        transition: opacity 0.3s ease; /* Glatka tranzicija */
+                        z-index: 1; /* Pozicionirano ispod teksta */
+                      }
+    
+                      &:hover h6 {
+                        color: $hover-color-links; /* Promena boje teksta na hover */
+                      }
+
                 }
             }
         }
+
         .latest_reviews_content_right {
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 1px solid;
+            width: 30%;
+            margin-left: 10%;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 15px;
+
+            .latest_reviews_content_right_item {
+                display: flex;
+                height: 20%;
+                width: 100%;
+                align-items: center;
+                position: relative;
+
+                .latest_reviews_content_right_item_post_thumb {
+                    width: 30%;
+                    height: 80%;
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: $border-radius;
+                    }
+
+                    .rank-circle {
+                        position: absolute;
+                        top: 50%; /* Centrirano vertikalno */
+                        left: -1px; /* Pomakni krug malo ulevo */
+                        transform: translate(-50%, -50%); /* Precizno centriranje */
+                        background-color: $background-color-orange; /* Zelena boja */
+                        color: white;
+                        width: 25px;
+                        height: 25px;
+                        border-radius: 50%; /* Oblik kruga */
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: bold;
+                        font-size: 14px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Blaga senka za dubinu */
+                      }
+                }
+
+                .latest_reviews_content_right_item_post_content {
+                    width: 70%;
+                    margin-left: 10px;
+                }
+            }
         }
     }
 
 
-}    
-   
+}

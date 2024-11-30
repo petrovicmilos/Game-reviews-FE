@@ -1,17 +1,41 @@
+@import '../../styles/styles.scss';
+
 .banner-menu {
-    width: 50%;
+    width: 80%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
-    margin-left: 5%;
-    margin-top: -300px;
-    
 
     .banner-menu-item1, .banner-menu-item2, .banner-menu-item3 {
-        width: 30%;
-        height: 350px;
-        background-color: white;
+        gap: 20px;
+        width: 25%;
+        color: white;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        border-radius: 6px;
+        border-radius: $border-radius;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banner-menu-item1 {
+        background-image: url(../../assets/bf1small.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: fit;
+    }
+
+    .banner-menu-item2 {
+        background-image: url(../../assets/callofduty.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: fit;
+    }
+
+    .banner-menu-item3 {
+        background-image: url(../../assets/tombraider.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: fit;
     }
 
     
