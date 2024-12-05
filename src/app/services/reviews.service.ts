@@ -93,8 +93,89 @@ export class ReviewsService {
       audienceScore: 86,
       image: './assets/ffxvi.jpg',
       text: 'Final Fantasy XVI combines cinematic storytelling with thrilling combat, redefining the series for a new generation.'
+    },
+    {
+      id: 11,
+      title: 'Minecraft - Building Dreams in a Blocky World',
+      criticScore: 92,
+      audienceScore: 95,
+      image: './assets/minecraft.jpg',
+      text: 'Minecraft continues to inspire creativity, offering endless opportunities for construction and exploration in a procedurally generated world.'
+    },
+    {
+      id: 12,
+      title: 'Overwatch 2 - Team-Based Combat at Its Best',
+      criticScore: 89,
+      audienceScore: 84,
+      image: './assets/overwatch2.jpg',
+      text: 'Overwatch 2 refines the team-based shooter formula, introducing new heroes and maps while maintaining the fast-paced action.'
+    },
+    {
+      id: 13,
+      title: 'Apex Legends - Battle Royale Revolutionized',
+      criticScore: 88,
+      audienceScore: 91,
+      image: './assets/apexlegends.jpg',
+      text: 'Apex Legends delivers a thrilling and tactical battle royale experience with unique characters and abilities that elevate the genre.'
+    },
+    {
+      id: 14,
+      title: 'Red Dead Redemption 2 - The Wild West Reborn',
+      criticScore: 97,
+      audienceScore: 93,
+      image: './assets/rdr2.jpg',
+      text: 'Red Dead Redemption 2 offers a breathtaking open-world experience, filled with detailed characters and a gripping story set in the final days of the Wild West.'
+    },
+    {
+      id: 15,
+      title: 'The Elder Scrolls V: Skyrim - A Fantasy Epic',
+      criticScore: 94,
+      audienceScore: 91,
+      image: './assets/skyrim.jpg',
+      text: 'Skyrim offers an expansive world of dragons, magic, and adventure, allowing players to carve their own path in a rich fantasy universe.'
+    },
+    {
+      id: 16,
+      title: 'Fortnite - The Battle Royale Phenomenon',
+      criticScore: 85,
+      audienceScore: 88,
+      image: './assets/fortnite.jpg',
+      text: 'Fortnite has become a cultural phenomenon with its fast-paced battle royale gameplay, constantly evolving through updates and events.'
+    },
+    {
+      id: 17,
+      title: 'Call of Duty: Modern Warfare II - Tactical Warfare Reborn',
+      criticScore: 89,
+      audienceScore: 85,
+      image: './assets/codmwi.jpg',
+      text: 'Call of Duty: Modern Warfare II offers tactical, fast-paced gameplay with intense multiplayer modes and an exciting single-player campaign.'
+    },
+    {
+      id: 18,
+      title: 'Sekiro: Shadows Die Twice - A Samurai Saga',
+      criticScore: 94,
+      audienceScore: 88,
+      image: './assets/sekiro.jpg',
+      text: 'Sekiro delivers a challenging action-adventure experience with precise combat, intricate world-building, and a deep storyline set in feudal Japan.'
+    },
+    {
+      id: 19,
+      title: 'Super Mario Odyssey - The Ultimate 3D Adventure',
+      criticScore: 97,
+      audienceScore: 93,
+      image: './assets/supermarioodyssey.jpg',
+      text: 'Super Mario Odyssey offers a whimsical, yet challenging 3D platforming experience with creative levels and charming characters.'
+    },
+    {
+      id: 20,
+      title: 'Ghost of Tsushima - A Samurai’s Journey',
+      criticScore: 92,
+      audienceScore: 89,
+      image: './assets/ghostofthushima.jpg',
+      text: 'Ghost of Tsushima offers a breathtaking open-world adventure set in feudal Japan, combining combat, exploration, and a gripping story.'
     }
   ];
+
 
   getAllReviews() {
     return this.reviews;
