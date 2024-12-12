@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NewsService } from '../services/news.service';
+import { NewsService, News } from '../services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -8,18 +7,12 @@ import { NewsService } from '../services/news.service';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  newsId!: number;
-  newsContent: any;
+  allNews: News[] = []; // Array to store all news
 
-  constructor(
-    private route: ActivatedRoute,
-    private newsService: NewsService
-  ) {}
+  constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.newsId = Number(this.route.snapshot.paramMap.get('id'));
-    this.newsService.getNewsById(this.newsId).subscribe((news) => {
-      this.newsContent = news;
-    });
+    // Fetch all news from the service
+    this.allNews = this.newsService.getAllNews();
   }
 }

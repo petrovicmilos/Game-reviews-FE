@@ -8,7 +8,7 @@ import { TrendingService } from '../services/trending.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  postId!: number;
+  postId!: any;
   postContent: any;
 
   constructor(
@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postId = Number(this.route.snapshot.paramMap.get('id'));
-    this.trendingService.getPostById(this.postId).subscribe((post) => {
+    this.trendingService.getPostById(this.postId).subscribe((post: any) => {
       this.postContent = post;
     });
   }
