@@ -1,0 +1,101 @@
+<div class="game_detail">
+    <div class="game_header">
+        <div class="game_header_left"><img [src]="game.image" alt="{{ game.title }}" /></div>
+        <div class="game_header_right">
+            <div class="game_header_right_title">
+                <h2>{{ game.title }}</h2>
+            </div>
+            <div class="game_header_right_details">
+                <div class="game_header_right_details_platforms"><b>PS5, PC, Nintendo</b></div>
+                <div class="game_header_right_details_release_date"><b>Released on:</b> {{ game.releaseDate }}</div>
+            </div>
+            <div class="game_header_right_score">
+                <div class="game_header_right_score_critics">
+                    <div class="game_header_right_score_details">
+                        <h5>CRITIC SCORE</h5>
+                        <p>{{ getScoreText(game.criticScore) }}</p>
+                    </div>
+                    <div class="game_header_right_score_number" [ngClass]="{
+                'low-score': game.criticScore < 50,
+                'medium-score': game.criticScore >= 50 && game.criticScore < 75,
+                'high-score': game.criticScore >= 75
+              }">{{ game.criticScore }}</div>
+                </div>
+                <div class="game_header_right_score_critics">
+                    <div class="game_header_right_score_details">
+                        <h5>AUDIENCE SCORE</h5>
+                        <p>{{ getScoreText(game.audienceScore) }}</p>
+                    </div>
+                    <div class="game_header_right_score_number" [ngClass]="{
+                'low-score': game.audienceScore < 50,
+                'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                'high-score': game.audienceScore >= 75
+              }">{{ game.audienceScore }}</div>
+                </div>
+                <div class="game_header_right_score_critics">
+                    <div class="game_header_right_score_details">
+                        <h5>MY SCORE</h5>
+                        <p>Hover and click to give a score</p>
+                    </div>
+                    <div class="game_header_right_score_number" [ngClass]="{
+                'low-score': game.criticScore < 50,
+                'medium-score': game.criticScore >= 50 && game.criticScore < 75,
+                'high-score': game.criticScore >= 75
+              }">11</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="game_body">
+        <div class="game_body_latest_critic_reviews">
+            <h3>Latest Critic Reviews</h3>
+            <div class="game_body_latest_critic_reviews_card">
+                <div class="game_body_latest_critic_reviews_card_header">
+                    <div class="game_body_latest_critic_reviews_card_score">75</div>
+                    <div class="game_body_latest_critic_reviews_card_username">GameGrin</div>
+                </div>
+                <div class="game_body_latest_critic_reviews_card_text">
+                    <p>A definite recommendation for Fairy Tail fans, Fairy Tail 2 has its issues, mainly with pacing,
+                        but the overall</p>
+                    <button>Read More</button>
+                </div>
+                <div class="game_body_latest_critic_reviews_card_footer">
+                    <p class="game_body_latest_critic_reviews_card_footer_date">DEC 13, 2024</p>
+                    <p class="game_body_latest_critic_reviews_card_footer_platform">PLAYSTATION 5</p>
+                </div>
+            </div>
+        </div>
+        <div class="game_body_latest_critic_reviews">
+            <h3>Latest User Reviews</h3>
+            <div class="game_body_latest_critic_reviews_card">
+                <div class="game_body_latest_critic_reviews_card_header">
+                    <div class="game_body_latest_critic_reviews_card_score">75</div>
+                    <div class="game_body_latest_critic_reviews_card_username">GameGrin</div>
+                </div>
+                <div class="game_body_latest_user_reviews_card_text">
+                    <p>A definite recommendation for Fairy Tail fans, Fairy Tail 2 has its issues, mainly with pacing,
+                        but the overall</p>
+                    <button>Read More</button>
+                </div>
+                <div class="game_body_latest_critic_reviews_card_footer">
+                    <div class="game_body_latest_critic_reviews_card_footer_date"><p>DEC 13, 2024</p></div>
+                    <div class="game_body_latest_critic_reviews_card_footer_platform"><p>PLAYSTATION 5</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="game_body_platforms">
+            <h3>All Platforms</h3>
+            <div class="game_body_platforms_card">
+                <div class="game_body_platforms_card_left">
+                    <div class="game_body_platforms_card_left_title">PC</div>
+                    <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
+                </div>
+                <div class="game_body_platforms_card_right">87</div>
+            </div>
+        </div>
+        <div class="game_body_allReviews">
+            <div class="game_body_allReviews_left">1</div>
+            <div class="game_body_allReviews_right">2</div>
+        </div>
+    </div>
+</div>

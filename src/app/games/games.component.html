@@ -1,0 +1,22 @@
+<div class="games">
+    <div class="games_title">
+      <h1>All Games</h1>
+    </div>
+    <div class="games_grid">
+      <div class="games_grid_card" *ngFor="let game of allGames" [routerLink]="['/games', game.id]">
+        <img [src]="game.image" alt="Review Image">
+        <div><b>{{ game.title }}</b></div>
+        <div
+          class="games_grid_card_score"
+          [ngClass]="{
+            'low-score': game.criticScore < 50,
+            'medium-score': game.criticScore >= 50 && game.criticScore < 75,
+            'high-score': game.criticScore >= 75
+          }"
+        >
+          {{ game.criticScore }}
+        </div>
+      </div>
+    </div>
+  </div>
+  

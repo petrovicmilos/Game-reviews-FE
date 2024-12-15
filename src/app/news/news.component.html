@@ -1,8 +1,14 @@
 <div class="news">
-  <div class="news-item" *ngFor="let newsItem of allNews" [routerLink]="['/news', newsItem.id]">
-    <img [src]="newsItem.image" alt="{{ newsItem.title }}">
-    <h4>{{ newsItem.title }}</h4>
-    <p>{{ newsItem.content | slice: 0:100 }}...</p> <!-- Display first 100 characters -->
-    <span>{{ newsItem.publishedDate }}</span>
+  <div class="news_title">
+    <h1>All news</h1>
+  </div>
+  <div class="news_grid">
+    <div class="news_item" *ngFor="let newsItem of allNews" [routerLink]="['/news', newsItem.id]">
+      <img [src]="newsItem.image" alt="{{ newsItem.title }}">
+      <h4>{{ newsItem.title }}</h4>
+      <p>{{ newsItem.content | slice: 0:100 }}...</p> <!-- Display first 100 characters -->
+      <span>{{ newsItem.publishedDate }}</span>
+    </div>
   </div>
 </div>
+

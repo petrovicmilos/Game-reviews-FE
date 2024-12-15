@@ -1,42 +1,58 @@
 .news {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+
+    .news-title {
+      margin-bottom: 20px; /* Razmak između naslova i grid-a */
+      h1 {
+          font-size: 32px;
+          text-align: center;
+          color: #333;
+      }
+  }
+
+  .news_grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
-  
-    .news-item {
+
+    .news_item {
       border: 1px solid #ddd;
       padding: 10px;
       border-radius: 8px;
       text-align: center;
       cursor: pointer;
       transition: transform 0.2s;
-  
+
       img {
         width: 100%;
         height: 150px;
-        object-fit: cover;
+        object-fit: fill;
         border-radius: 4px;
       }
-  
+
       h4 {
         font-size: 1.2rem;
         margin: 10px 0;
       }
-  
+
       p {
         font-size: 0.9rem;
         color: #555;
       }
-  
+
       span {
         font-size: 0.8rem;
         color: #777;
       }
-  
+
       &:hover {
         transform: scale(1.05);
       }
     }
   }
-  
+}

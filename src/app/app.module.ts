@@ -19,6 +19,8 @@ import { PostComponent } from './post/post.component';
 import { NewsComponent } from './news/news.component';
 import { ReviewDetailComponent } from './review-detail/review-detail.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { GamesComponent } from './games/games.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { NewsDetailComponent } from './news-detail/news-detail.component';
     PostComponent,
     NewsComponent,
     ReviewDetailComponent,
-    NewsDetailComponent
+    NewsDetailComponent,
+    GamesComponent,
+    GameDetailComponent
   ],
   imports: [
     BrowserModule,

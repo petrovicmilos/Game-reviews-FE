@@ -10,9 +10,8 @@ export class HeaderComponentComponent {
   faSearch = faSearch;
 
   menuItems = [
-    { title: 'Reviews', link: '/reviews' },
     { title: 'Games', link: '/games' },
+    { title: 'Blog', link: '/reviews' },
     { title: 'News', link: '/news' },
-    { title: 'Videos', link: '/videos' }
   ];
 }
