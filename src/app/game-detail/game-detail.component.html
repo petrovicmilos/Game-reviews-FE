@@ -34,8 +34,9 @@
                 </div>
                 <div class="game_header_right_score_critics">
                     <div class="game_header_right_score_details">
-                        <h5>MY SCORE</h5>
-                        <p>Hover and click to give a score</p>
+                        <h5 class="game_header_right_score_details_myScore_title">MY SCORE</h5>
+                        <app-button text="Add My Review" type="router" routerLink="#" color="#9b6530"
+                            hoverColor="#b77a37" textColor="white" padding="7px 30px" fontSize="12px"></app-button>
                     </div>
                     <div class="game_header_right_score_number" [ngClass]="{
                 'low-score': game.criticScore < 50,
@@ -51,13 +52,18 @@
             <h3>Latest Critic Reviews</h3>
             <div class="game_body_latest_critic_reviews_card">
                 <div class="game_body_latest_critic_reviews_card_header">
-                    <div class="game_body_latest_critic_reviews_card_score">75</div>
+                    <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
+                        'low-score': game.criticScore < 50,
+                        'medium-score': game.criticScore >= 50 && game.criticScore < 75,
+                        'high-score': game.criticScore >= 75
+                      }">{{ game.criticScore}}</div>
                     <div class="game_body_latest_critic_reviews_card_username">GameGrin</div>
                 </div>
                 <div class="game_body_latest_critic_reviews_card_text">
                     <p>A definite recommendation for Fairy Tail fans, Fairy Tail 2 has its issues, mainly with pacing,
-                        but the overall</p>
-                    <button>Read More</button>
+                        but the overall...</p>
+                    <app-button text="Read More" type="router" routerLink="#" color="#9b6530" hoverColor="#b77a37"
+                        textColor="white" padding="6px 10px" fontSize="12px"></app-button>
                 </div>
                 <div class="game_body_latest_critic_reviews_card_footer">
                     <p class="game_body_latest_critic_reviews_card_footer_date">DEC 13, 2024</p>
@@ -69,33 +75,179 @@
             <h3>Latest User Reviews</h3>
             <div class="game_body_latest_critic_reviews_card">
                 <div class="game_body_latest_critic_reviews_card_header">
-                    <div class="game_body_latest_critic_reviews_card_score">75</div>
-                    <div class="game_body_latest_critic_reviews_card_username">GameGrin</div>
+                    <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
+                        'low-score': game.audienceScore < 50,
+                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                        'high-score': game.audienceScore >= 75
+                      }">{{ game.audienceScore }}</div>
+                    <div class="game_body_latest_critic_reviews_card_username">AudienceExpert</div>
                 </div>
-                <div class="game_body_latest_user_reviews_card_text">
+                <div class="game_body_latest_critic_reviews_card_text">
                     <p>A definite recommendation for Fairy Tail fans, Fairy Tail 2 has its issues, mainly with pacing,
-                        but the overall</p>
-                    <button>Read More</button>
+                        but the overall...</p>
+                    <app-button text="Read More" type="router" routerLink="#" color="#9b6530" hoverColor="#b77a37"
+                        textColor="white" padding="6px 10px" fontSize="12px" s></app-button>
                 </div>
                 <div class="game_body_latest_critic_reviews_card_footer">
-                    <div class="game_body_latest_critic_reviews_card_footer_date"><p>DEC 13, 2024</p></div>
-                    <div class="game_body_latest_critic_reviews_card_footer_platform"><p>PLAYSTATION 5</p></div>
+                    <div class="game_body_latest_critic_reviews_card_footer_date">
+                        <p>DEC 13, 2024</p>
+                    </div>
+                    <div class="game_body_latest_critic_reviews_card_footer_platform">
+                        <p>PLAYSTATION 5</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="game_body_platforms">
-            <h3>All Platforms</h3>
-            <div class="game_body_platforms_card">
-                <div class="game_body_platforms_card_left">
-                    <div class="game_body_platforms_card_left_title">PC</div>
-                    <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
+            <div class="game_body_platforms_header">
+                <h3>All Platforms</h3>
+            </div>
+            <div class="game_body_platforms_body">
+                <div class="game_body_platforms_card">
+                    <div class="game_body_platforms_card_left">
+                        <div class="game_body_platforms_card_left_title">PC</div>
+                        <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
+                    </div>
+                    <div class="game_body_platforms_card_right" [ngClass]="{
+                        'low-score': game.audienceScore < 50,
+                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                        'high-score': game.audienceScore >= 75
+                      }">87</div>
                 </div>
-                <div class="game_body_platforms_card_right">87</div>
+                <div class="game_body_platforms_card">
+                    <div class="game_body_platforms_card_left">
+                        <div class="game_body_platforms_card_left_title">XBOX</div>
+                        <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
+                    </div>
+                    <div class="game_body_platforms_card_right" [ngClass]="{
+                        'low-score': game.audienceScore < 50,
+                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                        'high-score': game.audienceScore >= 75
+                      }">87</div>
+                </div>
+                <div class="game_body_platforms_card">
+                    <div class="game_body_platforms_card_left">
+                        <div class="game_body_platforms_card_left_title">PLAYSTATION 5</div>
+                        <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
+                    </div>
+                    <div class="game_body_platforms_card_right" [ngClass]="{
+                        'low-score': game.audienceScore < 50,
+                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                        'high-score': game.audienceScore >= 75
+                      }">87</div>
+                </div>
             </div>
         </div>
         <div class="game_body_allReviews">
-            <div class="game_body_allReviews_left">1</div>
-            <div class="game_body_allReviews_right">2</div>
+            <div class="game_body_allReviews_half">
+                <div class="game_body_allReviews_header">
+                    <h3>Critic Reviews</h3>
+                </div>
+                <div class="game_body_allReviews_filter">
+                    <ul>
+                        <li>All Reviews</li>
+                        <li>Positive Reviews</li>
+                        <li>Mixed Reviews</li>
+                        <li>Negative Reviews</li>
+                    </ul>
+                </div>
+                <div class="game_body_allReviews_card">
+                    <div class="game_body_allReviews_card_header">
+                        <div class="game_body_allReviews_card_header_left">
+                            <div class="game_body_allReviews_card_header_score" [ngClass]="{
+                                'low-score': game.audienceScore < 50,
+                                'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                                'high-score': game.audienceScore >= 75
+                              }">97</div>
+                            <div class="game_body_allReviews_card_header_username">Irish Independent</div>
+                        </div>
+                        <div class="game_body_allReviews_card_header_date">DEC 10, 2024</div>
+                    </div>
+                    <div class="game_body_allReviews_card_body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum assumenda laboriosam, ipsa
+                            obcaecati quam soluta mollitia, praesentium a explicabo saepe delectus. Tempore, rerum
+                            nostrum magnam maiores veniam quas amet quisquam.</p>
+                    </div>
+                    <div class="game_body_allReviews_card_footer">
+                        <div class="game_body_allReviews_card_footer_likes_dislikes">
+                            <span class="game_body_allReviews_card_footer_like"><fa-icon [icon]="faThumbsUp"></fa-icon>
+                                <span class="game_body_allReviews_card_footer_like_number">10</span></span>
+                            <span class="game_body_allReviews_card_footer_dislike"><fa-icon
+                                    [icon]="faThumbsDown"></fa-icon> <span
+                                    class="game_body_allReviews_card_footer_dislike_number">2</span></span>
+                        </div>
+                        <div class="game_body_allReviews_card_footer_platform">XBOX SERIES X</div>
+                    </div>
+                </div>
+            </div>
+            <div class="game_body_allReviews_half">
+                <div class="game_body_allReviews_header">
+                    <h3>Audience Reviews</h3>
+                </div>
+                <div class="game_body_allReviews_filter">
+                    <ul>
+                        <li>All Reviews</li>
+                        <li>Positive Reviews</li>
+                        <li>Mixed Reviews</li>
+                        <li>Negative Reviews</li>
+                    </ul>
+                </div>
+                <div class="game_body_allReviews_card">
+                    <div class="game_body_allReviews_card_header">
+                        <div class="game_body_allReviews_card_header_left">
+                            <div class="game_body_allReviews_card_header_score" [ngClass]="{
+                                'low-score': game.audienceScore < 50,
+                                'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
+                                'high-score': game.audienceScore >= 75
+                              }">78</div>
+                            <div class="game_body_allReviews_card_header_username">AudienceMaster</div>
+                        </div>
+
+                        <div class="game_body_allReviews_card_header_date">DEC 10, 2024</div>
+                    </div>
+                    <div class="game_body_allReviews_card_body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum assumenda laboriosam, ipsa
+                            obcaecati quam soluta mollitia, praesentium a explicabo saepe delectus. Tempore, rerum
+                            nostrum magnam maiores veniam quas amet quisquam.</p>
+                    </div>
+                    <div class="game_body_allReviews_card_footer">
+                        <div class="game_body_allReviews_card_footer_likes_dislikes">
+                            <span class="game_body_allReviews_card_footer_like"><fa-icon [icon]="faThumbsUp"></fa-icon>
+                                <span class="game_body_allReviews_card_footer_like_number">10</span></span>
+                            <span class="game_body_allReviews_card_footer_dislike"><fa-icon
+                                    [icon]="faThumbsDown"></fa-icon> <span
+                                    class="game_body_allReviews_card_footer_dislike_number">2</span></span>
+                        </div>
+                        <div class="game_body_allReviews_card_footer_platform">PLAYSTATION 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game_body_details">
+            <div class="game_body_details_header">
+                <h3>Details</h3>
+            </div>
+            <div class="game_body_details_body">
+                <div class="game_body_details_body_summary">
+                    <div class="game_body_details_body_summary_title"><h5>Summary</h5></div>
+                    <div class="game_body_details_body_summary_text">
+                        <p>You are Indiana Jones. Live the adventure as Indy in a thrilling story full of exploration, immersive action, and intriguing puzzles. You will travel the world in a race against enemy forces to discover the secrets to one of the greatest mysteries of all time. When a break-in in the dead of night ends in a confrontation with a mysterious colossal man, you must set out to discover the world-shattering secret behind the theft of a seemingly unimportant artifact. Travel from the halls of Marshall College to the heart of the Vatican, the pyramids of Egypt, the sunken temples of Sukhothai, and beyond. Use guile and wits to solve ancient riddles and survive intense set-pieces. Indiana’s trademark whip can be used for traversal as well as to distract, disarm, and attack enemies. Combine stealth infiltration, melee combat, and gunplay to combat the enemy threat and unravel the mystery. Venture through a mix of linear, narrative-driven gameplay and open-area maps. Indulge your inner explorer and unearth fascinating secrets, deadly traps and fiendish puzzles, where anything could potentially hide the next piece of the mystery.</p>
+                    </div>
+                </div>
+                <div class="game_body_details_body_cards">
+                    <div class="game_body_details_body_cards_card">
+                        <p><b>Platforms: </b>PC, Xbox Series X, Playstation 5</p>
+                        <p><b>Initial Release Date: </b>Dec 9, 2024</p>
+                    </div>
+                    <div class="game_body_details_body_cards_card">
+                        <p><b>Developer: </b>MachineGames</p>
+                        <p><b>Publisher: </b>Bethesda Softworks</p>
+                    </div>
+                    <div class="game_body_details_body_cards_card">
+                        <p><b>Genres: </b>First-Person Shooter</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

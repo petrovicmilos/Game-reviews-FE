@@ -11,13 +11,13 @@
         display: flex;
         align-items: center;
         padding: 10px;
-        width: 60%;
+        width: 65%;
         border-radius: $border-radius;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         height: 100%;
 
         .game_header_left {
-            width: 65%;
+            width: 60%;
 
             img {
                 width: 700px;
@@ -56,7 +56,7 @@
                     justify-content: space-between;
                     border-bottom: 1px solid;
                     padding: 10px 5px;
-                
+
                     &:last-child {
                         border-bottom: none; // Uklanja border-bottom za poslednji element
                     }
@@ -78,6 +78,10 @@
                         p {
                             margin: 10px 0 0 0;
                             font-weight: 600;
+                        }
+
+                        .game_header_right_score_details_myScore_title {
+                            margin-bottom: 10px !important;
                         }
                     }
 
@@ -109,10 +113,11 @@
             }
         }
     }
+
     .game_body {
         display: flex;
         flex-direction: column;
-        width: 60%;
+        width: 65%;
         margin-top: 10px;
 
         .game_body_latest_critic_reviews {
@@ -127,29 +132,268 @@
                 flex-direction: column;
                 width: 20%;
                 height: 250px;
-                border: 1px solid;
 
                 .game_body_latest_critic_reviews_card_header {
                     display: flex;
+                    align-items: center;
+                    padding: 10px 0;
+
+                    .game_body_latest_critic_reviews_card_score {
+                        font-size: 20px;
+                        padding: 5px;
+                        border-radius: $border-radius;
+
+                        &.low-score {
+                            background-color: #ff6b6b; // Svetlo crvena
+                        }
+
+                        &.medium-score {
+                            background-color: #ffa502; // Narandžasto-žuta
+                        }
+
+                        &.high-score {
+                            background-color: #2ed573; // Svetlo zelena
+                        }
+                    }
+
+                    .game_body_latest_critic_reviews_card_username {
+                        margin-left: 15px;
+                        font-weight: 600;
+                    }
                 }
 
-                .game_body_latest_user_reviews_card_text {
-
+                .game_body_latest_critic_reviews_card_text {
+                    padding: 5px;
+                    color: #5e5e5e;
                 }
 
                 .game_body_latest_critic_reviews_card_footer {
-                   display: flex;
+                    display: flex;
+                    align-items: center;
+                    font-size: 13px;
+                    justify-content: space-around;
+
+                    .game_body_latest_critic_reviews_card_footer_platform {
+                        font-weight: 800;
+                    }
                 }
             }
         }
 
         .game_body_platforms {
+            margin-bottom: 40px;
 
-            .game_body_platforms_card {
-                border: 1px solid;
-                width: 300px;
+            .game_body_platforms_header {
+                h3 {
+                    border-bottom: 1px solid;
+                    padding-bottom: 20px;
+                }
+            }
+
+            .game_body_platforms_body {
+                display: flex;
+                justify-content: space-around;
+
+                .game_body_platforms_card {
+                    width: 350px;
+                    padding: 20px;
+                    border-radius: $border-radius;
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .game_body_platforms_card_left {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        .game_body_platforms_card_left_title {
+                            margin-bottom: 20px;
+                            font-weight: 800;
+                            font-size: 22px;
+                        }
+
+                        .game_body_platforms_card_left_desc {
+                            font-size: 15px;
+                        }
+                    }
+
+                    .game_body_platforms_card_right {
+                        font-size: 40px;
+                        font-weight: 800;
+                        padding: 5px;
+                        border-radius: $border-radius;
+
+                        &.low-score {
+                            background-color: #ff6b6b; // Svetlo crvena
+                        }
+
+                        &.medium-score {
+                            background-color: #ffa502; // Narandžasto-žuta
+                        }
+
+                        &.high-score {
+                            background-color: #2ed573; // Svetlo zelena
+                        }
+                    }
+                }
             }
         }
-        
+
+        .game_body_allReviews {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+
+            .game_body_allReviews_half {
+                &:last-child {
+                    margin-left: 10px;
+                }
+
+                .game_body_allReviews_header {
+
+                    h3 {
+                        border-bottom: 1px solid;
+                        padding-bottom: 20px;
+                        width: 98%;
+                    }
+                }
+
+                .game_body_allReviews_filter {
+                    margin-bottom: 40px;
+
+                    ul {
+                        display: flex;
+                        align-items: center;
+                        list-style-type: none;
+                        padding: 0;
+
+                        li {
+                            font-size: 15px;
+                            margin: 0 20px 0 0;
+
+                        }
+                    }
+                }
+
+                .game_body_allReviews_card {
+                    width: 96%;
+                    height: 300px;
+                    background-color: #F2F2F2;
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    border-radius: $border-radius;
+                    display: flex;
+                    flex-direction: column;
+
+                    .game_body_allReviews_card_header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .game_body_allReviews_card_header_left {
+                            display: flex;
+                            align-items: center;
+                            padding: 8px;
+
+                            .game_body_allReviews_card_header_score {
+                                font-size: 35px;
+                                font-weight: 600;
+                                margin-right: 15px;
+                                padding: 3px;
+                                border-radius: $border-radius;
+
+                                &.low-score {
+                                    background-color: #ff6b6b; // Svetlo crvena
+                                }
+
+                                &.medium-score {
+                                    background-color: #ffa502; // Narandžasto-žuta
+                                }
+
+                                &.high-score {
+                                    background-color: #2ed573; // Svetlo zelena
+                                }
+                            }
+
+                            .game_body_allReviews_card_header_username {
+                                font-weight: 600;
+                            }
+                        }
+
+                        .game_body_allReviews_card_header_date {
+                            font-size: 14px;
+                            color: #707070;
+                            margin-right: 10px;
+                        }
+                    }
+
+                    .game_body_allReviews_card_body {
+                        padding: 10px 0 10px 5px;
+                        font-size: 18px;
+                        margin-bottom: auto;
+                    }
+
+                    .game_body_allReviews_card_footer {
+                        border-top: 1px solid rgb(197, 197, 197);
+                        padding: 15px 5px 15px 5px;
+                        display: flex;
+                        justify-content: space-between;
+
+                        .game_body_allReviews_card_footer_likes_dislikes {
+                            font-size: 14px;
+                            display: flex;
+                            align-items: center;
+                            
+                            .game_body_allReviews_card_footer_like {
+                                margin-right: 10px;
+
+                                .game_body_allReviews_card_footer_like_number {
+                                    margin-left: 2px;
+                                }
+                            }
+
+                            .game_body_allReviews_card_footer_dislike {
+                                .game_body_allReviews_card_footer_dislike_number {
+                                    margin-left: 4px;
+                                }
+                            }
+                        }
+
+                        .game_body_allReviews_card_footer_platform {
+                            font-weight: 600;
+                            color: #797979;
+                        }
+                    }
+                }
+            }
+        }
+        .game_body_details {
+            .game_body_details_header {
+                border-bottom: 1px solid;
+            }
+
+            .game_body_details_body {
+                display: flex;
+                justify-content: space-between;
+
+                .game_body_details_body_summary, .game_body_details_body_cards {
+                    flex: 1;
+                }
+
+                .game_body_details_body_summary {
+
+                }
+
+                .game_body_details_body_cards {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            
+        }
     }
 }

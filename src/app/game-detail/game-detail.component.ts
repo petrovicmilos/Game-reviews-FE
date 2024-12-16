@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game, GamesService } from '../services/games.service';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-game-detail',
@@ -9,6 +10,8 @@ import { Game, GamesService } from '../services/games.service';
 })
 export class GameDetailComponent implements OnInit {
   game!: Game;
+  faThumbsUp = faThumbsUp; // Like ikona
+  faThumbsDown = faThumbsDown; // Dislike ikona
 
   constructor(private route: ActivatedRoute, private gameService: GamesService) {}
 
