@@ -376,20 +376,35 @@
             .game_body_details_body {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
 
                 .game_body_details_body_summary, .game_body_details_body_cards {
-                    flex: 1;
-                }
-
-                .game_body_details_body_summary {
-
+                    width: 50%;
                 }
 
                 .game_body_details_body_cards {
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
+                    justify-content: space-around;
+                    padding: 20px 0;
+
+                    .game_body_details_body_cards_card {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        width: 60%;
+                        height: 40px;
+                        margin: 20px auto;
+                        background-color: #F2F2F2;
+                        padding: 20px;
+                        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+                        p {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
                 }
             }
 
