@@ -14,10 +14,9 @@ import { BannerMenuComponent } from './banner-menu/banner-menu.component';
 import { TrendingComponent } from './trending/trending.component';
 import { LatestReviewsComponent } from './latest-reviews/latest-reviews.component';
 import { FooterComponent } from './footer/footer.component';
-import { ReviewsComponent } from './reviews/reviews.component';
+import { BlogComponent } from './blog/blog.component';
 import { PostComponent } from './post/post.component';
 import { NewsComponent } from './news/news.component';
-import { ReviewDetailComponent } from './review-detail/review-detail.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { GamesComponent } from './games/games.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
@@ -35,10 +34,9 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
     TrendingComponent,
     LatestReviewsComponent,
     FooterComponent,
-    ReviewsComponent,
+    BlogComponent,
     PostComponent,
     NewsComponent,
-    ReviewDetailComponent,
     NewsDetailComponent,
     GamesComponent,
     GameDetailComponent

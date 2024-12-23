@@ -1,10 +1,10 @@
 <div class="reviews">
     <div class="reviews_title">
-        <h1>All reviews</h1>
+        <h1>Blog</h1>
     </div>
     <div class="reviews_grid">
         <div class="reviews_grid_card" *ngFor="let review of allReviews"
-            [routerLink]="['/reviews', review.id]">
+            [routerLink]="['/post', review.id]">
             <img [src]="review.image" alt="Review Image">
             <div>{{ review.title }}</div> <!-- Ovo je tekst na dnu slike -->
         </div>

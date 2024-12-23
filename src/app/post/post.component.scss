@@ -1,0 +1,153 @@
+@import '../../styles/colors.scss';
+@import '../../styles/styles.scss';
+
+.post_detail {
+  margin-top: 150px;
+  margin-bottom: 150px;
+  display: flex;
+  padding: 0 10%;
+
+  .post_detail_left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .post_detail_left_title {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .post_detail_left_banner {
+      object-fit: contain;
+
+      img {
+        width: 100%;
+        border-radius: $border-radius;
+      }
+    }
+
+    .post_detail_left_info {
+      font-size: 13px;
+
+      span {
+        margin-right: 15px;
+      }
+    }
+
+    .post_detail_left_content {}
+
+    .post_detail_left_date {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 30px;
+      margin-left: 90px;
+      font-size: 14px;
+    }
+
+    .comments {
+      margin-top: 50px;
+
+      .comments_title {
+        margin-bottom: 20px;
+        font-size: 25px;
+        font-weight: 800;
+      }
+
+      .comment {
+        margin-bottom: 15px;
+        border: 1px solid;
+        height: 100px;
+        display: flex;
+
+        .comment_avatar {
+          object-fit: contain;
+
+          img {
+            width: 120px;
+            height: 100%;
+          }
+        }
+
+        .comment_content {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .comment_content_username {
+
+            font-size: 20px;
+            font-weight: 600;
+            padding: 0 0 5px 15px;
+          }
+
+          .comment_content_text {
+            padding: 0 0 0 15px;
+            color: rgb(114, 114, 114);
+          }
+
+          .comment_content_reply {
+            padding: 0 0 0 15px;
+            font-size: 13px;
+
+            a {
+              text-decoration: none;
+              color: green;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .post_detail_right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .post_detail_right_articles {
+      width: 100%;
+      height: 400px;
+
+      .post_detail_right_articles_item {
+        width: 80%;
+        border: 1px solid;
+        margin: auto;
+        height: 20%;
+      }
+    }
+
+    .post_detail_right_newsletter {
+      border: 1px solid;
+      width: 80%;
+      height: 300px;
+      margin-top: 40px;
+
+      .post_detail_right_newsletter_title {
+        text-align: center;
+      }
+    }
+
+    .post_detail_right_topfivegames {
+      width: 80%;
+      height: 400px;
+      margin-top: 40px;
+
+      .post_detail_right_topfivegames_title {
+        text-align: center;
+      }
+
+      .post_detail_right_topfivegames_games {
+        width: 100%;
+        height: 100%;
+
+        .post_detail_right_topfivegames_game {
+          border: 1px solid;
+          height: 20%;
+        }
+      }
+    }
+  }
+}

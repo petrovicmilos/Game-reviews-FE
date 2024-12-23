@@ -11,7 +11,7 @@ export class HeaderComponentComponent {
 
   menuItems = [
     { title: 'Games', link: '/games' },
-    { title: 'Blog', link: '/reviews' },
+    { title: 'Blog', link: '/blog' },
     { title: 'News', link: '/news' },
   ];
 }

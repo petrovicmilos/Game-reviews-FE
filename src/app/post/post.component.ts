@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TrendingService } from '../services/trending.service';
+import { BlogService } from '../services/blog.service';
+import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-post',
@@ -10,15 +11,17 @@ import { TrendingService } from '../services/trending.service';
 export class PostComponent implements OnInit {
   postId!: any;
   postContent: any;
+  faHeart = faHeart;
+  faComment = faComment;
 
   constructor(
     private route: ActivatedRoute,
-    private trendingService: TrendingService
+    private blogService: BlogService
   ) {}
 
   ngOnInit(): void {
     this.postId = Number(this.route.snapshot.paramMap.get('id'));
-    this.trendingService.getPostById(this.postId).subscribe((post: any) => {
+    this.blogService.getPostById(this.postId).subscribe((post: any) => {
       this.postContent = post;
     });
   }

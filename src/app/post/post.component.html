@@ -1,7 +1,61 @@
-<div *ngIf="postContent">
-    <h1>{{ postContent.title }}</h1>
-    <p>{{ postContent.content }}</p>
-    <p>Likes: {{ postContent.likes }}</p>
-    <p>Comments: {{ postContent.comments }}</p>
+<div class="post_detail" *ngIf="postContent">
+  <div class="post_detail_left">
+    <div class="post_detail_left_title">
+      <h1>{{ postContent.title }}</h1>
+    </div>
+    <div class="post_detail_left_banner"><img [src]="postContent.image" /></div>
+    <div class="post_detail_left_info">
+      <p>
+        <span>{{ postContent.postingDate }}</span>
+        <span><fa-icon [icon]="faHeart" class="light-icon"></fa-icon> 100</span>
+        <span><fa-icon [icon]="faComment" class="light-icon"></fa-icon> 3</span>
+      </p>
+    </div>
+    <div class="post_detail_left_content">
+      <p>{{ postContent.text }}</p>
+    </div>
+    <div class="comments">
+      <div class="comments_title">3 Comments</div>
+      <div class="comment">
+        <div class="comment_avatar"><img src="../../assets/bf1small.jpg" alt=""></div>
+        <div class="comment_content">
+          <div class="comment_content_username">Miki Maus</div>
+          <div class="comment_content_text"><span>This is the best gaming forum and store ever!</span></div>
+          <div class="comment_content_reply"><a href="#">REPLY</a></div>
+        </div>
+      </div>
+      <div class="comment">ovo je drugi komentar</div>
+      <div class="comment">ovo je treci komentar</div>
+    </div>
   </div>
-  
+  <div class="post_detail_right">
+    <div class="post_detail_right_title">
+      <h3>Popular Articles</h3>
+    </div>
+    <div class="post_detail_right_articles">
+      <div class="post_detail_right_articles_item">item 1</div>
+      <div class="post_detail_right_articles_item">item 1</div>
+      <div class="post_detail_right_articles_item">item 1</div>
+      <div class="post_detail_right_articles_item">item 1</div>
+      <div class="post_detail_right_articles_item">item 1</div>
+    </div>
+    <div class="post_detail_right_newsletter">
+      <div class="post_detail_right_newsletter_title">
+        <h3>Newsletter</h3>
+      </div>
+      <div></div>
+    </div>
+    <div class="post_detail_right_topfivegames">
+      <div class="post_detail_right_topfivegames_title">
+        <h3>Top Five Games</h3>
+      </div>
+      <div class="post_detail_right_topfivegames_games">
+        <div class="post_detail_right_topfivegames_game">1</div>
+        <div class="post_detail_right_topfivegames_game">2</div>
+        <div class="post_detail_right_topfivegames_game">3</div>
+        <div class="post_detail_right_topfivegames_game">4</div>
+        <div class="post_detail_right_topfivegames_game">5</div>
+      </div>
+    </div>
+  </div>
+</div>

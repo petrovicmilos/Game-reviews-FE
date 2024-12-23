@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService, News } from '../services/news.service';
 import { ActivatedRoute } from '@angular/router';
+import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-news-detail',
@@ -10,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class NewsDetailComponent implements OnInit {
 
   news!: News;
+  faHeart = faHeart;
+  faComment = faComment;
 
   constructor(private route: ActivatedRoute, private newsService: NewsService) {}
 
