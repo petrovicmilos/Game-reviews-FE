@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../services/blog.service';
 import { Game, GamesService } from '../services/games.service';
 import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
   postId!: number;
   postContent: any;
   popularArticles: any[] = [];
   topFiveGames: Game[] = [];
   faHeart = faHeart;
   faComment = faComment;
+  routeSub!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,19 +26,35 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Fetch the current post
-    this.postId = Number(this.route.snapshot.paramMap.get('id'));
+    this.routeSub = this.route.paramMap.subscribe((params) => {
+      this.postId = Number(params.get('id'));
+      this.fetchPostContent();
+      this.fetchPopularArticles();
+    });
+
+    this.fetchTopFiveGames();
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
+  }
+
+  fetchPostContent(): void {
     this.blogService.getPostById(this.postId).subscribe((post: any) => {
       this.postContent = post;
     });
+  }
 
-    // Fetch 5 popular articles excluding the current one
+  fetchPopularArticles(): void {
     const allArticles = this.blogService.getAllReviews();
     this.popularArticles = allArticles
       .filter((article) => article.id !== this.postId)
       .slice(0, 5);
+  }
 
-    // Fetch top 5 games based on audience score
+  fetchTopFiveGames(): void {
     const allGames = this.gamesService.getAllGames();
     this.topFiveGames = allGames
       .slice()

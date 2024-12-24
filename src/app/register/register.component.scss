@@ -1,0 +1,57 @@
+@import '../../styles/colors.scss';
+@import '../../styles/styles.scss';
+
+.register_component {
+    display: flex;
+    justify-content: center;
+    .register_component_container {
+        border: 1px solid;
+        margin-top: 5%;
+        width: 50%;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        .register_component_title {
+            text-align: center;
+        }
+        .register_component_form {
+            width: 100%;
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                margin: auto;
+                height: 500px;
+                justify-content: space-around;
+
+                .register_component_form_input_item {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+
+                    }
+
+                    input {
+                        height: 30px;
+                        border-radius: $border-radius;
+                        border: none;
+                        border-bottom: 1px solid;
+                        font-size: 20px;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                .register_component_form_button_item {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+    
+}

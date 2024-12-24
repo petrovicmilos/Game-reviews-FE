@@ -106,99 +106,173 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    margin-left: 15px;
 
     .post_detail_right_articles {
       width: 100%;
       height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
 
       .post_detail_right_articles_item {
         width: 80%;
-        border: 1px solid;
         margin: auto;
-        height: 20%;
+        height: 200px;
+        padding: 0 0 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        .post_detail_right_articles_item_title {
+          h4 {
+            margin: 0;
+          }
+        }
+
+        .post_detail_right_articles_item_info {
+          p {
+            margin: 0;
+            padding: 0;
+            span {
+              margin-right: 15px;
+              font-size: 13px;
+            }
+          }
+          
+        }
+          
+        
       }
     }
 
     .post_detail_right_newsletter {
-      border: 1px solid;
       width: 80%;
-      height: 300px;
+      height: 100px;
       margin-top: 40px;
 
       .post_detail_right_newsletter_title {
         text-align: center;
       }
+
+      .post_detail_right_newsletter_input {
+        width: 80%;
+        margin: auto;
+
+        input {
+          width: 100%;
+          height: 30px;
+          border: 0.3px solid rgb(173, 173, 173);
+          border-radius: $border-radius;
+        }
+      }
     }
 
     .post_detail_right_topfivegames {
-      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      margin-top: 10%;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      padding: 15%;
-    
+      padding: 0 0 0 15px;
+
       h4 {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         font-size: 18px;
         font-weight: bold;
         color: #333;
       }
-    
+
       .post_detail_right_topfivegames_item {
         display: flex;
+        width: 100%;
+        height: 100px;
         align-items: center;
-        margin-bottom: 15px;
+        position: relative;
         cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-        &:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-    
+
         &::last-child {
           margin-bottom: 0;
         }
-    
+
         .post_detail_right_topfivegames_item_thumb {
+          width: 30%;
+          height: 80%;
           position: relative;
-          width: 50px;
-          height: 50px;
-          margin-right: 10px;
-    
+
           img {
             width: 100%;
             height: 100%;
-            border-radius: 8px;
             object-fit: cover;
+            border-radius: $border-radius;
           }
-    
+
           .rank-circle {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background-color: #2ed573;
+            top: 50%;
+            /* Centrirano vertikalno */
+            left: -1px;
+            /* Pomakni krug malo ulevo */
+            transform: translate(-50%, -50%);
+            /* Precizno centriranje */
+            background-color: $background-color-orange;
+            /* Zelena boja */
             color: white;
-            font-size: 12px;
-            font-weight: bold;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
+            /* Oblik kruga */
             display: flex;
             justify-content: center;
             align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Blaga senka za dubinu */
           }
         }
-    
+
         .post_detail_right_topfivegames_item_content {
+          width: 70%;
+          margin-left: 10px;
+
           h5 {
             margin: 0;
-            font-size: 14px;
-            font-weight: 600;
-            color: #555;
+                        // padding: 15px;
+                        transition: color 0.3s ease;
+                        z-index: 2; /* Osiguraj da tekst ostane iznad pozadinskog efekta */
+                        padding: 10px;
           }
+        }
+
+        &:hover::before {
+          opacity: 0.1; /* Blago zatamnjenje */
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: black; /* Tamna pozadina */
+          opacity: 0; /* Nevidljivo dok nije hover */
+          transition: opacity 0.3s ease; /* Glatka tranzicija */
+          z-index: 1; /* Pozicionirano ispod teksta */
+        }
+
+        &:hover h5 {
+          color: $hover-color-links; /* Promena boje teksta na hover */
         }
       }
     }
-    
+
   }
 }

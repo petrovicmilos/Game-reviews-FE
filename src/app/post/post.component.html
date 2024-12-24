@@ -41,7 +41,7 @@
         <div class="post_detail_right_articles_item_title">
           <h4>{{ article.title }}</h4>
         </div>
-        <div>
+        <div class="post_detail_right_articles_item_info">
           <p>
             <span>{{ article.postingDate }}</span>
             <span><fa-icon [icon]="faHeart" class="light-icon"></fa-icon> 100</span>
@@ -53,13 +53,15 @@
     
     <div class="post_detail_right_newsletter">
       <div class="post_detail_right_newsletter_title">
-        <h3>Newsletter</h3>
+        <h3>Subscribe For Newsletter</h3>
       </div>
-      <div></div>
+      <div class="post_detail_right_newsletter_input">
+        <input type="email" placeholder="Enter your email address">
+      </div>
     </div>
     <div class="post_detail_right_topfivegames">
       <h4>Top 5 Best Games</h4>
-      <div class="post_detail_right_topfivegames_item" *ngFor="let game of topFiveGames; let i = index" [routerLink]="['/reviews', game.id]">
+      <div class="post_detail_right_topfivegames_item" *ngFor="let game of topFiveGames; let i = index" [routerLink]="['/games', game.id]">
         <div class="post_detail_right_topfivegames_item_thumb">
           <div class="rank-circle">{{ i + 1 }}</div>
           <img [src]="game.image" alt="{{ game.title }}" />
@@ -69,7 +71,5 @@
         </div>
       </div>
     </div>
-    
-    
   </div>
 </div>

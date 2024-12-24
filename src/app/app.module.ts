@@ -20,6 +20,8 @@ import { NewsComponent } from './news/news.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { GamesComponent } from './games/games.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
     NewsComponent,
     NewsDetailComponent,
     GamesComponent,
-    GameDetailComponent
+    GameDetailComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
