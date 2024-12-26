@@ -5,11 +5,11 @@
     display: flex;
     justify-content: center;
     .register_component_container {
-        border: 1px solid;
         margin-top: 5%;
         width: 50%;
         height: 600px;
         display: flex;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         flex-direction: column;
         .register_component_title {
             text-align: center;
@@ -35,7 +35,6 @@
 
                     input {
                         height: 30px;
-                        border-radius: $border-radius;
                         border: none;
                         border-bottom: 1px solid;
                         font-size: 20px;
@@ -51,6 +50,20 @@
                     justify-content: center;
                 }
             }
+        }
+        .register_component_container_alternative {
+            text-align: center;
+
+            p {
+                margin: 0;
+
+                a {
+                    color: $hover-color-links;
+                    text-decoration: none;
+                }
+            }
+
+            
         }
     }
     
