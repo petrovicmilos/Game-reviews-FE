@@ -6,7 +6,7 @@
 
     <div class="latest_reviews_content">
         <div class="latest_reviews_content_left">
-            <div class="latest_reviews_content_left_large" [routerLink]="['/games', latestReview.id]">
+            <div class="latest_reviews_content_left_large" *ngIf="latestReview" [routerLink]="['/games', latestReview.id]">
                 <img [src]="latestReview.image" alt="{{ latestReview.title }}" />
                 <div>
                     <h2>{{ latestReview.title }}</h2>
@@ -14,7 +14,7 @@
             </div>
             <div class="latest_reviews_content_left_grid">
                 <div class="latest_reviews_content_left_grid_box" *ngFor="let review of reviewsGrid"
-                    [routerLink]="['/reviews', review.id]">
+                    [routerLink]="['/games', review.id]">
                     <img [src]="review.image" alt="" />
                     <div>
                         <h6>{{ review.title }}</h6>
@@ -25,7 +25,7 @@
         <div class="latest_reviews_content_right">
             <h4>Top 5 Best Games</h4>
             <div class="latest_reviews_content_right_item" *ngFor="let review of topFiveReviews; let i = index"
-                [routerLink]="['/reviews', review.id]">
+                [routerLink]="['/games', review.id]">
                 <div class="latest_reviews_content_right_item_post_thumb">
                     <div class="rank-circle">{{ i + 1 }}</div>
                     <img [src]="review.image" alt="">
@@ -34,3 +34,4 @@
             </div>
         </div>
     </div>
+</div>

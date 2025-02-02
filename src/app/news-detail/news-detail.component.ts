@@ -3,7 +3,7 @@ import { NewsService, News } from '../services/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
 import { Game, GamesService } from '../services/games.service';
-import { BlogService } from '../services/blog.service';
+import { BlogService, Blog } from '../services/blog.service';
 
 @Component({
   selector: 'app-news-detail',
@@ -11,35 +11,45 @@ import { BlogService } from '../services/blog.service';
   styleUrls: ['./news-detail.component.scss']
 })
 export class NewsDetailComponent implements OnInit {
-
   news!: News;
   faHeart = faHeart;
   faComment = faComment;
-  popularArticles: any[] = [];
+  popularArticles: Blog[] = [];
   topFiveGames: Game[] = [];
 
-  constructor(private route: ActivatedRoute, private newsService: NewsService, private blogService: BlogService, private gamesService: GamesService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private newsService: NewsService,
+    private blogService: BlogService,
+    private gamesService: GamesService
+  ) {}
 
   ngOnInit(): void {
     // Retrieve the `id` from the route
     const newsId = +this.route.snapshot.paramMap.get('id')!;
-    this.fetchTopFiveGames();
-    // Fetch the news item by its ID
-    this.news = this.newsService.getNewsById(newsId)!;
+    this.fetchNewsById(newsId);
     this.fetchPopularArticles();
+    this.fetchTopFiveGames();
+  }
+
+  fetchNewsById(id: number): void {
+    this.newsService.getNewsById(id).subscribe((newsData: News) => {
+      this.news = newsData;
+    });
   }
 
   fetchPopularArticles(): void {
-    const allArticles = this.blogService.getAllReviews();
-    this.popularArticles = allArticles
-      .slice(0, 5);
+    this.blogService.getAllBlogs().subscribe((allArticles: Blog[]) => {
+      this.popularArticles = allArticles.slice(0, 5);
+    });
   }
 
   fetchTopFiveGames(): void {
-    const allGames = this.gamesService.getAllGames();
-    this.topFiveGames = allGames
-      .slice()
-      .sort((a, b) => b.audienceScore - a.audienceScore)
-      .slice(0, 5);
+    this.gamesService.getAllGames().subscribe((allGames: Game[]) => {
+      this.topFiveGames = allGames
+        .slice()
+        .sort((a, b) => b.averageAudienceScore - a.averageAudienceScore)
+        .slice(0, 5);
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BlogService } from '../services/blog.service';
+import { Blog, BlogService } from '../services/blog.service';
 import { Game, GamesService } from '../services/games.service';
 import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
@@ -48,17 +48,20 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   fetchPopularArticles(): void {
-    const allArticles = this.blogService.getAllReviews();
-    this.popularArticles = allArticles
-      .filter((article) => article.id !== this.postId)
-      .slice(0, 5);
+    this.blogService.getAllReviews().subscribe((allArticles: Blog[]) => {
+      this.popularArticles = allArticles
+        .filter((article) => article.id !== this.postId)
+        .slice(0, 5);
+    });
   }
+  
 
   fetchTopFiveGames(): void {
-    const allGames = this.gamesService.getAllGames();
-    this.topFiveGames = allGames
-      .slice()
-      .sort((a, b) => b.audienceScore - a.audienceScore)
-      .slice(0, 5);
-  }
+    this.gamesService.getAllGames().subscribe((allGames: Game[]) => {
+      this.topFiveGames = allGames
+        .slice()
+        .sort((a, b) => b.averageAudienceScore - a.averageAudienceScore)
+        .slice(0, 5);
+    });
+  }  
 }

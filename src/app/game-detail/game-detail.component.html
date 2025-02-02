@@ -13,24 +13,24 @@
                 <div class="game_header_right_score_critics">
                     <div class="game_header_right_score_details">
                         <h5>CRITIC SCORE</h5>
-                        <p>{{ getScoreText(game.criticScore) }}</p>
+                        <p>{{ getScoreText(game.averageCriticScore) }}</p>
                     </div>
                     <div class="game_header_right_score_number" [ngClass]="{
-                'low-score': game.criticScore < 50,
-                'medium-score': game.criticScore >= 50 && game.criticScore < 75,
-                'high-score': game.criticScore >= 75
-              }">{{ game.criticScore }}</div>
+                'low-score': game.averageCriticScore < 50,
+                'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
+                'high-score': game.averageCriticScore >= 75
+              }">{{ game.averageCriticScore }}</div>
                 </div>
                 <div class="game_header_right_score_critics">
                     <div class="game_header_right_score_details">
                         <h5>AUDIENCE SCORE</h5>
-                        <p>{{ getScoreText(game.audienceScore) }}</p>
+                        <p>{{ getScoreText(game.averageAudienceScore) }}</p>
                     </div>
                     <div class="game_header_right_score_number" [ngClass]="{
-                'low-score': game.audienceScore < 50,
-                'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                'high-score': game.audienceScore >= 75
-              }">{{ game.audienceScore }}</div>
+                'low-score': game.averageAudienceScore < 50,
+                'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                'high-score': game.averageAudienceScore >= 75
+              }">{{ game.averageAudienceScore }}</div>
                 </div>
                 <div class="game_header_right_score_critics">
                     <div class="game_header_right_score_details">
@@ -39,9 +39,9 @@
                             hoverColor="#b77a37" textColor="white" padding="7px 30px" fontSize="12px"></app-button>
                     </div>
                     <div class="game_header_right_score_number" [ngClass]="{
-                'low-score': game.criticScore < 50,
-                'medium-score': game.criticScore >= 50 && game.criticScore < 75,
-                'high-score': game.criticScore >= 75
+                'low-score': game.averageCriticScore < 50,
+                'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
+                'high-score': game.averageCriticScore >= 75
               }">11</div>
                 </div>
             </div>
@@ -53,10 +53,10 @@
             <div class="game_body_latest_critic_reviews_card">
                 <div class="game_body_latest_critic_reviews_card_header">
                     <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
-                        'low-score': game.criticScore < 50,
-                        'medium-score': game.criticScore >= 50 && game.criticScore < 75,
-                        'high-score': game.criticScore >= 75
-                      }">{{ game.criticScore}}</div>
+                        'low-score': game.averageCriticScore < 50,
+                        'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
+                        'high-score': game.averageCriticScore >= 75
+                      }">{{ game.averageCriticScore}}</div>
                     <div class="game_body_latest_critic_reviews_card_username">GameGrin</div>
                 </div>
                 <div class="game_body_latest_critic_reviews_card_text">
@@ -76,10 +76,10 @@
             <div class="game_body_latest_critic_reviews_card">
                 <div class="game_body_latest_critic_reviews_card_header">
                     <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
-                        'low-score': game.audienceScore < 50,
-                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                        'high-score': game.audienceScore >= 75
-                      }">{{ game.audienceScore }}</div>
+                        'low-score': game.averageAudienceScore < 50,
+                        'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                        'high-score': game.averageAudienceScore >= 75
+                      }">{{ game.averageAudienceScore }}</div>
                     <div class="game_body_latest_critic_reviews_card_username">AudienceExpert</div>
                 </div>
                 <div class="game_body_latest_critic_reviews_card_text">
@@ -109,9 +109,9 @@
                         <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
                     </div>
                     <div class="game_body_platforms_card_right" [ngClass]="{
-                        'low-score': game.audienceScore < 50,
-                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                        'high-score': game.audienceScore >= 75
+                        'low-score': game.averageAudienceScore < 50,
+                        'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                        'high-score': game.averageAudienceScore >= 75
                       }">87</div>
                 </div>
                 <div class="game_body_platforms_card">
@@ -120,9 +120,9 @@
                         <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
                     </div>
                     <div class="game_body_platforms_card_right" [ngClass]="{
-                        'low-score': game.audienceScore < 50,
-                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                        'high-score': game.audienceScore >= 75
+                        'low-score': game.averageAudienceScore < 50,
+                        'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                        'high-score': game.averageAudienceScore >= 75
                       }">87</div>
                 </div>
                 <div class="game_body_platforms_card">
@@ -131,9 +131,9 @@
                         <div class="game_body_platforms_card_left_desc">Based on 67 Critic Reviews</div>
                     </div>
                     <div class="game_body_platforms_card_right" [ngClass]="{
-                        'low-score': game.audienceScore < 50,
-                        'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                        'high-score': game.audienceScore >= 75
+                        'low-score': game.averageAudienceScore < 50,
+                        'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                        'high-score': game.averageAudienceScore >= 75
                       }">87</div>
                 </div>
             </div>
@@ -155,9 +155,9 @@
                     <div class="game_body_allReviews_card_header">
                         <div class="game_body_allReviews_card_header_left">
                             <div class="game_body_allReviews_card_header_score" [ngClass]="{
-                                'low-score': game.audienceScore < 50,
-                                'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                                'high-score': game.audienceScore >= 75
+                                'low-score': game.averageAudienceScore < 50,
+                                'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                                'high-score': game.averageAudienceScore >= 75
                               }">97</div>
                             <div class="game_body_allReviews_card_header_username">Irish Independent</div>
                         </div>
@@ -196,9 +196,9 @@
                     <div class="game_body_allReviews_card_header">
                         <div class="game_body_allReviews_card_header_left">
                             <div class="game_body_allReviews_card_header_score" [ngClass]="{
-                                'low-score': game.audienceScore < 50,
-                                'medium-score': game.audienceScore >= 50 && game.audienceScore < 75,
-                                'high-score': game.audienceScore >= 75
+                                'low-score': game.averageAudienceScore < 50,
+                                'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
+                                'high-score': game.averageAudienceScore >= 75
                               }">78</div>
                             <div class="game_body_allReviews_card_header_username">AudienceMaster</div>
                         </div>

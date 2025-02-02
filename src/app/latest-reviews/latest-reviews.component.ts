@@ -14,18 +14,20 @@ export class LatestReviewsComponent implements OnInit {
   constructor(private gamesService: GamesService) {}
 
   ngOnInit(): void {
-    const allGames = this.gamesService.getAllGames();
+    this.gamesService.getAllGames().subscribe((allGames: Game[]) => {
+      if (allGames.length > 0) {
+        // Fetch the first review as the large content
+        this.latestReview = allGames[0];
 
-    // Fetch the first review as the large content
-    this.latestReview = allGames[0];
+        // Fetch the next 3 reviews for the grid section
+        this.reviewsGrid = allGames.slice(1, 4);
 
-    // Fetch the next 3 reviews for the grid section
-    this.reviewsGrid = allGames.slice(1, 4);
-
-    // Fetch the top 5 reviews based on audience score
-    this.topFiveReviews = allGames
-      .slice() // Copy the array to avoid modifying the original
-      .sort((a, b) => b.audienceScore - a.audienceScore) // Sort by audience score in descending order
-      .slice(0, 5); // Take the top 5
+        // Fetch the top 5 reviews based on audience score
+        this.topFiveReviews = allGames
+          .slice() // Copy the array to avoid modifying the original
+          .sort((a, b) => b.averageAudienceScore - a.averageAudienceScore) // Sort by audience score in descending order
+          .slice(0, 5); // Take the top 5
+      }
+    });
   }
 }

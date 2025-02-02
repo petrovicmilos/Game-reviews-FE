@@ -10,15 +10,17 @@ import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class GameDetailComponent implements OnInit {
   game!: Game;
-  faThumbsUp = faThumbsUp; // Like ikona
-  faThumbsDown = faThumbsDown; // Dislike ikona
+  faThumbsUp = faThumbsUp;
+  faThumbsDown = faThumbsDown;
 
   constructor(private route: ActivatedRoute, private gameService: GamesService) {}
 
   ngOnInit(): void {
     const gameId = +this.route.snapshot.paramMap.get('id')!;
-    this.game = this.gameService.getGameById(gameId)!;
     
+    this.gameService.getGameById(gameId).subscribe((gameData: Game) => {
+      this.game = gameData;
+    });
   }
 
   getScoreText(score: number): string {
@@ -34,5 +36,4 @@ export class GameDetailComponent implements OnInit {
       return 'Universal Acclaim';
     }
   }
-  
 }
