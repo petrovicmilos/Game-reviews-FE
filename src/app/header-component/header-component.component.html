@@ -14,10 +14,15 @@
                 <fa-icon [icon]="faSearch"></fa-icon>
             </form>
         </div>
-        <div class="register-button">
-            <app-button text="Login" type="router" routerLink="/login" color="#9b6530" hoverColor="#b77a37"
-                textColor="white" padding="18px 30px" fontSize="16px"></app-button>
 
+        <div class="register-button">
+            <app-button *ngIf="!isLoggedIn" text="Login" type="router" routerLink="/login"
+                color="#9b6530" hoverColor="#b77a37" textColor="white" padding="18px 30px" fontSize="16px">
+            </app-button>
+
+            <app-button *ngIf="isLoggedIn" text="Logout" type="button" (click)="logout()"
+                color="red" hoverColor="darkred" textColor="white" padding="18px 30px" fontSize="16px">
+            </app-button>
         </div>
     </div>
 </header>
