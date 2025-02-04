@@ -27,7 +27,8 @@ export class RegisterComponent {
       username: this.username,
       email: this.email,
       password: this.password,
-      isCritic: false // Po defaultu nije kritičar
+      isCritic: false,
+      role: 'user'
     };
 
     this.userService.register(user).subscribe(

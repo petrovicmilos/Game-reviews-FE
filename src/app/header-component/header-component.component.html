@@ -24,5 +24,9 @@
                 color="red" hoverColor="darkred" textColor="white" padding="18px 30px" fontSize="16px">
             </app-button>
         </div>
+        <div class="register-button" *ngIf="isAdmin">
+            <app-button text="PANEL" type="router" routerLink="/admin" color="#d9534f" hoverColor="#c9302c"
+                textColor="white" padding="18px 30px" fontSize="16px"></app-button>
+        </div>
     </div>
 </header>

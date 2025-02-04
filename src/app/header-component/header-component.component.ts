@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service';
 export class HeaderComponentComponent implements OnInit {
   faSearch = faSearch;
   isLoggedIn = false;
+  isAdmin = false;
 
   menuItems = [
     { title: 'Games', link: '/games' },
@@ -23,6 +24,8 @@ export class HeaderComponentComponent implements OnInit {
     // Pratimo status prijave i automatski ažuriramo UI
     this.userService.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
+      const user = this.userService.getCurrentUser();
+      this.isAdmin = user?.role === 'admin'; // Provera da li je korisnik admin
     });
   }
 

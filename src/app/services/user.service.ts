@@ -8,6 +8,7 @@ export interface User {
   email: string;
   password: string;
   isCritic: boolean;
+  role: string;
 }
 
 @Injectable({
@@ -19,6 +20,10 @@ export class UserService {
   // BehaviorSubject za praćenje statusa prijave
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$ = this.isLoggedInSubject.asObservable(); // Observable koji komponente mogu pratiti
+
+  // BehaviorSubject za praćenje da li je korisnik admin
+  private isAdminSubject = new BehaviorSubject<boolean>(this.checkIfAdmin());
+  isAdmin$ = this.isAdminSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -32,16 +37,32 @@ export class UserService {
       tap((user) => {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
         this.isLoggedInSubject.next(true); // Obaveštava sve komponente o promeni statusa
+        this.isAdminSubject.next(user.role === 'admin');
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem('loggedInUser'); // Briše podatke iz localStorage
-    this.isLoggedInSubject.next(false); // Obaveštava sve komponente da korisnik više nije prijavljen
+    localStorage.removeItem('loggedInUser');
+    this.isLoggedInSubject.next(false);
+    this.isAdminSubject.next(false);
   }
 
   private hasToken(): boolean {
-    return !!localStorage.getItem('loggedInUser');
+    return this.getCurrentUser() !== null;
+  }
+
+  getCurrentUser(): User | null {
+    const userData = localStorage.getItem('loggedInUser');
+    return userData ? JSON.parse(userData) : null;
+  }
+
+  getRole(): string | null {
+    const user = this.getCurrentUser();
+    return user ? user.role : null;
+  }
+
+  private checkIfAdmin(): boolean {
+    return this.getRole() === 'admin';
   }
 }

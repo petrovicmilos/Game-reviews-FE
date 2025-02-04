@@ -3,12 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface News {
-  id: number;
+  id?: number; // id je opcioni jer se generiše u bazi
   title: string;
-  image: string;
   content: string;
-  text: string;
-  publishedDate: string;
+  postingDate: string;
+  image: string;
 }
 
 @Injectable({
@@ -32,5 +31,24 @@ export class NewsService {
   // Dohvati poslednje 3 vesti
   getRecentNews(): Observable<News[]> {
     return this.http.get<News[]>(`${this.apiUrl}/latest`);
-  }  
+  }
+
+  // Kreiraj novu vest
+  createNews(newsData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create`, newsData, {
+      reportProgress: true,
+      observe: 'response'
+    });
+  }
+  
+
+  // Ažuriraj postojeću vest
+  updateNews(id: number, news: FormData): Observable<News> {
+    return this.http.put<News>(`${this.apiUrl}/update/${id}`, news);
+  }
+
+  // Obriši vest po ID-u
+  deleteNews(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+  }
 }

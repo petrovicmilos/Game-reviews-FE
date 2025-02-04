@@ -10,7 +10,7 @@ export interface Game {
   description: string;
   averageCriticScore: number;
   averageAudienceScore: number;
-  image: string; // Dodaj ako ti je potreban za prikaz
+  image: string;
 }
 
 @Injectable({
@@ -32,12 +32,12 @@ export class GamesService {
   }
 
   // Dodavanje nove igre
-  createGame(game: Game): Observable<Game> {
-    return this.http.post<Game>(this.apiUrl, game);
+  createGame(game: FormData): Observable<Game> {
+    return this.http.post<Game>(`${this.apiUrl}/create`, game);
   }
 
   // Ažuriranje postojeće igre
-  updateGame(id: number, game: Game): Observable<Game> {
+  updateGame(id: number, game: FormData): Observable<Game> {
     return this.http.put<Game>(`${this.apiUrl}/${id}`, game);
   }
 

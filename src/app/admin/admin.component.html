@@ -1,0 +1,72 @@
+<div class="admin-container">
+    <h1>Admin Panel</h1>
+
+    <div class="tab-buttons">
+        <button (click)="setActiveTab('game')" [class.active]="activeTab === 'game'">Add Game</button>
+        <button (click)="setActiveTab('blog')" [class.active]="activeTab === 'blog'">Create Blog</button>
+        <button (click)="setActiveTab('news')" [class.active]="activeTab === 'news'">Create News</button>
+    </div>
+
+    <div *ngIf="activeTab === 'game'" class="form-container">
+        <h2>Add New Game</h2>
+        <form [formGroup]="gameForm" (ngSubmit)="submitGame()">
+            <label>Title:</label>
+            <input type="text" formControlName="title">
+
+            <label>Description:</label>
+            <textarea formControlName="description"></textarea>
+
+            <label>Platforms:</label>
+            <input type="text" formControlName="platforms">
+
+            <label>Initial Release Date:</label>
+            <input type="date" formControlName="releaseDate">
+
+            <label>Developer:</label>
+            <input type="text" formControlName="developer">
+
+            <label>Publisher:</label>
+            <input type="text" formControlName="publisher">
+
+            <label>Genres:</label>
+            <input type="text" formControlName="genre">
+
+            <label>Image:</label>
+            <input type="file" (change)="onGameImageChange($event)">
+
+            <button type="submit">Add Game</button>
+        </form>
+    </div>
+
+    <div *ngIf="activeTab === 'blog'" class="form-container">
+        <h2>Create Blog</h2>
+        <form [formGroup]="blogForm" (ngSubmit)="submitBlog()">
+            <label>Title:</label>
+            <input type="text" formControlName="title">
+
+            <label>Description:</label>
+            <textarea formControlName="content"></textarea>
+
+            <label>Image:</label>
+            <input type="file" (change)="onBlogImageChange($event)">
+
+            <button type="submit">Create Blog</button>
+        </form>
+    </div>
+
+    <div *ngIf="activeTab === 'news'" class="form-container">
+        <h2>Create News</h2>
+        <form [formGroup]="newsForm" (ngSubmit)="submitNews()">
+            <label>Title:</label>
+            <input type="text" formControlName="title">
+
+            <label>Text:</label>
+            <textarea formControlName="content"></textarea>
+
+            <label>Image:</label>
+            <input type="file" (change)="onNewsImageChange($event)">
+
+            <button type="submit">Create News</button>
+        </form>
+    </div>
+</div>
