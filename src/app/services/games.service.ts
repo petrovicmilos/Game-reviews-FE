@@ -11,6 +11,7 @@ export interface Game {
   averageCriticScore: number;
   averageAudienceScore: number;
   image: string;
+  platforms: string;
 }
 
 @Injectable({
@@ -44,5 +45,9 @@ export class GamesService {
   // Brisanje igre po ID-u
   deleteGame(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  searchGames(query: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/search?query=${query}`);
   }
 }

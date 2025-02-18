@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] }, // Zaštićena ruta
-  { path: '**', redirectTo: '/' } // Ako ruta ne postoji, ide na home
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

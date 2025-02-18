@@ -63,4 +63,9 @@ export class BlogService {
   dislikeBlog(id: number): Observable<Blog> {
     return this.http.post<Blog>(`${this.apiUrl}/${id}/dislike`, {});
   }
+
+  searchBlogs(query: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/search?query=${query}`);
+  }
+  
 }

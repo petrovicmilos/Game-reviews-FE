@@ -1,32 +1,40 @@
 <header class="header">
     <div class="logo">
-        <a routerLink=""><img src="./assets/gameflare logo.svg" alt="logo"></a>
+      <a routerLink=""><img src="./assets/gameflare logo.svg" alt="logo"></a>
     </div>
     <nav class="nav">
-        <ul>
-            <li *ngFor="let item of menuItems"><a [routerLink]="item.link">{{ item.title }}</a></li>
-        </ul>
+      <ul>
+        <li *ngFor="let item of menuItems"><a [routerLink]="item.link">{{ item.title }}</a></li>
+      </ul>
     </nav>
     <div class="search-register-elements">
-        <div class="search-bar">
-            <form action="#">
-                <input type="search" placeholder="Search">
-                <fa-icon [icon]="faSearch"></fa-icon>
-            </form>
+      <div class="search-bar">
+        <form (submit)="onSearch($event)">
+          <input type="search" placeholder="Search" [(ngModel)]="searchQuery" name="searchQuery" (input)="onSearchInput()">
+          <fa-icon [icon]="faSearch" (click)="onSearchClick()"></fa-icon>
+        </form>
+  
+        <!-- Dropdown -->
+        <div class="search-dropdown" *ngIf="showDropdown">
+          <div class="search-result" *ngFor="let result of searchResults" (click)="navigateToResult(result)">
+            <span>{{ result.title }}</span>
+            <small>({{ result.type }})</small>
+          </div>
         </div>
-
-        <div class="register-button">
-            <app-button *ngIf="!isLoggedIn" text="Login" type="router" routerLink="/login"
-                color="#9b6530" hoverColor="#b77a37" textColor="white" padding="18px 30px" fontSize="16px">
-            </app-button>
-
-            <app-button *ngIf="isLoggedIn" text="Logout" type="button" (click)="logout()"
-                color="red" hoverColor="darkred" textColor="white" padding="18px 30px" fontSize="16px">
-            </app-button>
-        </div>
-        <div class="register-button" *ngIf="isAdmin">
-            <app-button text="PANEL" type="router" routerLink="/admin" color="#d9534f" hoverColor="#c9302c"
-                textColor="white" padding="18px 30px" fontSize="16px"></app-button>
-        </div>
+      </div>
+  
+      <div class="register-button">
+        <app-button *ngIf="!isLoggedIn" text="Login" type="router" routerLink="/login" color="#9b6530"
+          hoverColor="#b77a37" textColor="white" padding="18px 30px" fontSize="16px">
+        </app-button>
+  
+        <app-button *ngIf="isLoggedIn" text="Logout" type="button" (click)="logout()" color="red" hoverColor="darkred"
+          textColor="white" padding="18px 30px" fontSize="16px">
+        </app-button>
+      </div>
+      <div class="register-button" *ngIf="isAdmin">
+        <app-button text="PANEL" type="router" routerLink="/admin" color="#d9534f" hoverColor="#c9302c" textColor="white"
+          padding="18px 30px" fontSize="16px"></app-button>
+      </div>
     </div>
-</header>
+  </header>  

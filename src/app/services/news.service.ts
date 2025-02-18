@@ -51,4 +51,9 @@ export class NewsService {
   deleteNews(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
+
+  searchNews(query: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/search?query=${query}`);
+  }
+  
 }

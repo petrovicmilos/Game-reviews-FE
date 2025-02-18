@@ -121,7 +121,7 @@ export class AdminComponent {
     });    
 
     this.newsService.createNews(formData).subscribe(
-      () => {
+      response => {
         alert('News created successfully!');
         this.newsForm.reset();
         this.selectedNewsImage = null;
