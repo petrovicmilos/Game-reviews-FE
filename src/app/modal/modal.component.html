@@ -1,0 +1,15 @@
+<div class="modal-overlay">
+    <div class="modal">
+        <h2>{{ title }}</h2>
+        <p>{{ content }}</p>
+
+        <div class="modal-content">
+            <ng-content></ng-content>
+          </div>
+
+        <div class="modal-actions">
+            <button (click)="confirm()" class="confirm-btn">{{ confirmButtonText }}</button>
+            <button (click)="cancel()" class="cancel-btn">{{ cancelButtonText }}</button>
+        </div>
+    </div>
+</div>

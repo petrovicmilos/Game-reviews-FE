@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AdminComponent } from './admin/admin.component';
     GameDetailComponent,
     RegisterComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

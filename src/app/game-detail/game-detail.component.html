@@ -34,19 +34,33 @@
                 </div>
                 <div class="game_header_right_score_critics">
                     <div class="game_header_right_score_details">
-                        <h5 class="game_header_right_score_details_myScore_title">MY SCORE</h5>
-                        <app-button text="Add My Review" type="router" routerLink="#" color="#9b6530"
+                        <h5 class="game_header_right_score_details_myScore_title">{{ isLoggedIn ? 'MY SCORE' : 'Login or register to review the game' }}</h5>
+                        <app-button *ngIf="isLoggedIn" text="{{ userReview ? 'Edit My Review' : 'Add My Review' }}" type="button" (click)="openReviewModal()" color="#9b6530"
                             hoverColor="#b77a37" textColor="white" padding="7px 30px" fontSize="12px"></app-button>
                     </div>
                     <div class="game_header_right_score_number" [ngClass]="{
                 'low-score': game.averageCriticScore < 50,
                 'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
                 'high-score': game.averageCriticScore >= 75
-              }">11</div>
+              }">{{ userReview?.score || '-' }}</div>
                 </div>
             </div>
         </div>
     </div>
+    <app-modal *ngIf="showReviewModal"
+           title="Submit Your Review"
+           content="Please enter your review and select a score."
+           confirmButtonText="Submit"
+           cancelButtonText="Cancel"
+           (onConfirm)="submitReview()"
+           (onCancel)="closeReviewModal()">
+           <div class="slider-container">
+            <label for="score">Score: {{ reviewScore }}</label>
+            <input type="range" id="score" [(ngModel)]="reviewScore" min="0" max="100" class="slider" />
+          </div>
+        
+          <textarea [(ngModel)]="reviewText" placeholder="Write your review..." class="review-textarea"></textarea>
+</app-modal>
     <div class="game_body">
         <div class="game_body_latest_critic_reviews">
             <h3>Latest Critic Reviews</h3>

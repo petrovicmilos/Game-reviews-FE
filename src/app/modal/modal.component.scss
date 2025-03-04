@@ -1,0 +1,103 @@
+// Boje za lakšu prilagodljivost
+$modal-bg: white;
+$overlay-bg: rgba(0, 0, 0, 0.7);
+$confirm-color: #28a745;
+$confirm-hover: #218838;
+$cancel-color: #dc3545;
+$cancel-hover: #c82333;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $overlay-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal {
+  background: $modal-bg;
+  padding: 25px;
+  border-radius: 10px;
+  width: 450px;
+  text-align: center;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-20px);
+  animation: slideIn 0.3s forwards;
+
+  h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .confirm-btn {
+      background: $confirm-color;
+      color: white;
+
+      &:hover {
+        background: $confirm-hover;
+      }
+    }
+
+    .cancel-btn {
+      background: $cancel-color;
+      color: white;
+
+      &:hover {
+        background: $cancel-hover;
+      }
+    }
+  }
+}
+
+// Animacije za pojavljivanje
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
