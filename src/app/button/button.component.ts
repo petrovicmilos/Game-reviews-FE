@@ -15,6 +15,7 @@ export class ButtonComponent {
   @Input() fontSize: string = '15px'; // Veličina fonta
   @Input() routerLink: string = ''; // Ruta na koju treba da ide
   @Input() type: 'button' | 'submit' | 'router' = 'button'; // Tip dugmeta: `button`, `submit` ili `router`
+  @Input() disabled: boolean = false; // Tip dugmeta: `button`, `submit` ili `router`
 
   @Output() clickAction = new EventEmitter<void>(); // Definiši događaj kada dugme nije router ili submit
 

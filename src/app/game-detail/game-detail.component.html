@@ -34,16 +34,36 @@
                 </div>
                 <div class="game_header_right_score_critics">
                     <div class="game_header_right_score_details">
-                        <h5 class="game_header_right_score_details_myScore_title">{{ isLoggedIn ? 'MY SCORE' : 'Login or register to review the game' }}</h5>
-                        <app-button *ngIf="isLoggedIn" text="{{ userReview ? 'Edit My Review' : 'Add My Review' }}" type="button" (click)="openReviewModal()" color="#9b6530"
-                            hoverColor="#b77a37" textColor="white" padding="7px 30px" fontSize="12px"></app-button>
+                      <h5 class="game_header_right_score_details_myScore_title">
+                        {{ isLoggedIn ? 'MY SCORE' : 'Login or register to review the game' }}
+                      </h5>
+                      <div *ngIf="isReviewSubmitted" class="confirmation-message">
+                        Thank you for submitting your review!
+                      </div>
+                      <app-button
+                        *ngIf="isLoggedIn"
+                        [text]="userReview ? 'Edit My Review' : 'Add My Review'"
+                        type="button"
+                        (click)="openReviewModal()"
+                        [disabled]="userReview && !isReviewSubmitted"
+                        color="#9b6530"
+                        hoverColor="#b77a37"
+                        textColor="white"
+                        padding="7px 30px"
+                        fontSize="12px"
+                      ></app-button>
                     </div>
-                    <div class="game_header_right_score_number" [ngClass]="{
-                'low-score': game.averageCriticScore < 50,
-                'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
-                'high-score': game.averageCriticScore >= 75
-              }">{{ userReview?.score || '-' }}</div>
-                </div>
+                    <div
+                      class="game_header_right_score_number"
+                      [ngClass]="{
+                        'low-score': game.averageCriticScore < 50,
+                        'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
+                        'high-score': game.averageCriticScore >= 75
+                      }"
+                    >
+                      {{ userReview?.score || '-' }}
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -64,54 +84,48 @@
     <div class="game_body">
         <div class="game_body_latest_critic_reviews">
             <h3>Latest Critic Reviews</h3>
-            <div class="game_body_latest_critic_reviews_card">
-                <div class="game_body_latest_critic_reviews_card_header">
-                    <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
-                        'low-score': game.averageCriticScore < 50,
-                        'medium-score': game.averageCriticScore >= 50 && game.averageCriticScore < 75,
-                        'high-score': game.averageCriticScore >= 75
-                      }">{{ game.averageCriticScore}}</div>
-                    <div class="game_body_latest_critic_reviews_card_username">GameGrin</div>
-                </div>
-                <div class="game_body_latest_critic_reviews_card_text">
-                    <p>A definite recommendation for Fairy Tail fans, Fairy Tail 2 has its issues, mainly with pacing,
-                        but the overall...</p>
-                    <app-button text="Read More" type="router" routerLink="#" color="#9b6530" hoverColor="#b77a37"
-                        textColor="white" padding="6px 10px" fontSize="12px"></app-button>
-                </div>
-                <div class="game_body_latest_critic_reviews_card_footer">
-                    <p class="game_body_latest_critic_reviews_card_footer_date">DEC 13, 2024</p>
-                    <p class="game_body_latest_critic_reviews_card_footer_platform">PLAYSTATION 5</p>
-                </div>
+            <div *ngFor="let review of latestCriticReviews" class="game_body_latest_critic_reviews_card">
+              <div class="game_body_latest_critic_reviews_card_header">
+                <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
+                    'low-score': review.score < 50,
+                    'medium-score': review.score >= 50 && review.score < 75,
+                    'high-score': review.score >= 75
+                  }">{{ review.score }}</div>
+                <div class="game_body_latest_critic_reviews_card_username">{{ review.user.username }}</div>
+              </div>
+              <div class="game_body_latest_critic_reviews_card_text">
+                <p>{{ review.content }}</p>
+                <app-button text="Read More" type="router" routerLink="#" color="#9b6530" hoverColor="#b77a37"
+                    textColor="white" padding="6px 10px" fontSize="12px"></app-button>
+              </div>
+              <div class="game_body_latest_critic_reviews_card_footer">
+                <p class="game_body_latest_critic_reviews_card_footer_date">{{ review.createdAt | date }}</p>
+                <p class="game_body_latest_critic_reviews_card_footer_platform">PLAYSTATION 5</p>
+              </div>
             </div>
-        </div>
+          </div>
         <div class="game_body_latest_critic_reviews">
             <h3>Latest User Reviews</h3>
-            <div class="game_body_latest_critic_reviews_card">
-                <div class="game_body_latest_critic_reviews_card_header">
-                    <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
-                        'low-score': game.averageAudienceScore < 50,
-                        'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
-                        'high-score': game.averageAudienceScore >= 75
-                      }">{{ game.averageAudienceScore }}</div>
-                    <div class="game_body_latest_critic_reviews_card_username">AudienceExpert</div>
-                </div>
-                <div class="game_body_latest_critic_reviews_card_text">
-                    <p>A definite recommendation for Fairy Tail fans, Fairy Tail 2 has its issues, mainly with pacing,
-                        but the overall...</p>
-                    <app-button text="Read More" type="router" routerLink="#" color="#9b6530" hoverColor="#b77a37"
-                        textColor="white" padding="6px 10px" fontSize="12px" s></app-button>
-                </div>
-                <div class="game_body_latest_critic_reviews_card_footer">
-                    <div class="game_body_latest_critic_reviews_card_footer_date">
-                        <p>DEC 13, 2024</p>
-                    </div>
-                    <div class="game_body_latest_critic_reviews_card_footer_platform">
-                        <p>PLAYSTATION 5</p>
-                    </div>
-                </div>
+            <div *ngFor="let review of latestUserReviews" class="game_body_latest_critic_reviews_card">
+              <div class="game_body_latest_critic_reviews_card_header">
+                <div class="game_body_latest_critic_reviews_card_score" [ngClass]="{
+                    'low-score': review.score < 50,
+                    'medium-score': review.score >= 50 && review.score < 75,
+                    'high-score': review.score >= 75
+                  }">{{ review.score }}</div>
+                <div class="game_body_latest_critic_reviews_card_username">{{ review.user.username }}</div>
+              </div>
+              <div class="game_body_latest_critic_reviews_card_text">
+                <p>{{ review.content }}</p>
+                <app-button text="Read More" type="router" routerLink="#" color="#9b6530" hoverColor="#b77a37"
+                    textColor="white" padding="6px 10px" fontSize="12px"></app-button>
+              </div>
+              <div class="game_body_latest_critic_reviews_card_footer">
+                <p class="game_body_latest_critic_reviews_card_footer_date">{{ review.createdAt | date }}</p>
+                <p class="game_body_latest_critic_reviews_card_footer_platform">PLAYSTATION 5</p>
+              </div>
             </div>
-        </div>
+          </div>
         <div class="game_body_platforms">
             <div class="game_body_platforms_header">
                 <h3>All Platforms</h3>
@@ -165,14 +179,14 @@
                         <li>Negative Reviews</li>
                     </ul>
                 </div>
-                <div class="game_body_allReviews_card">
+                <div *ngFor="let review of allReviewsCritics" class="game_body_allReviews_card">
                     <div class="game_body_allReviews_card_header">
                         <div class="game_body_allReviews_card_header_left">
                             <div class="game_body_allReviews_card_header_score" [ngClass]="{
-                                'low-score': game.averageAudienceScore < 50,
-                                'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
-                                'high-score': game.averageAudienceScore >= 75
-                              }">97</div>
+                                'low-score': review.score < 50,
+                                'medium-score': review.score >= 50 && review.score < 75,
+                                'high-score': review.score >= 75
+                              }">{{ review.score }}</div>
                             <div class="game_body_allReviews_card_header_username">Irish Independent</div>
                         </div>
                         <div class="game_body_allReviews_card_header_date">DEC 10, 2024</div>
@@ -206,23 +220,21 @@
                         <li>Negative Reviews</li>
                     </ul>
                 </div>
-                <div class="game_body_allReviews_card">
+                <div *ngFor="let review of allReviewsUsers" class="game_body_allReviews_card">
                     <div class="game_body_allReviews_card_header">
                         <div class="game_body_allReviews_card_header_left">
                             <div class="game_body_allReviews_card_header_score" [ngClass]="{
-                                'low-score': game.averageAudienceScore < 50,
-                                'medium-score': game.averageAudienceScore >= 50 && game.averageAudienceScore < 75,
-                                'high-score': game.averageAudienceScore >= 75
-                              }">78</div>
-                            <div class="game_body_allReviews_card_header_username">AudienceMaster</div>
+                                'low-score': review.score < 50,
+                                'medium-score': review.score >= 50 && review.score < 75,
+                                'high-score': review.score >= 75
+                              }">{{ review.score }}</div>
+                            <div class="game_body_allReviews_card_header_username">{{review.user.username}}</div>
                         </div>
 
                         <div class="game_body_allReviews_card_header_date">DEC 10, 2024</div>
                     </div>
                     <div class="game_body_allReviews_card_body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum assumenda laboriosam, ipsa
-                            obcaecati quam soluta mollitia, praesentium a explicabo saepe delectus. Tempore, rerum
-                            nostrum magnam maiores veniam quas amet quisquam.</p>
+                        <p>{{ review.content }}</p>
                     </div>
                     <div class="game_body_allReviews_card_footer">
                         <div class="game_body_allReviews_card_footer_likes_dislikes">

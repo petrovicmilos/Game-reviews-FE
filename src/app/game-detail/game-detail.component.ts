@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game, GamesService } from '../services/games.service';
-import { ReviewService } from '../services/review.service';
+import { Review, ReviewService } from '../services/review.service';
 import { UserService } from '../services/user.service';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,6 +18,11 @@ export class GameDetailComponent implements OnInit {
   showReviewModal = false;
   reviewScore = 50;
   reviewText = '';
+  isReviewSubmitted = false;
+  latestCriticReviews: Review[] = [];
+  latestUserReviews: Review[] = [];
+  allReviewsCritics: Review[] = [];
+  allReviewsUsers: Review[] = [];
 
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
@@ -40,6 +45,16 @@ export class GameDetailComponent implements OnInit {
     // Učitavanje igre
     this.gameService.getGameById(gameId).subscribe((gameData: Game) => {
       this.game = gameData;
+
+      this.reviewService.getAllReviews().subscribe((reviews) => {
+        this.allReviewsCritics = reviews.filter(review => review.isCritic);
+        this.allReviewsUsers = reviews.filter(review => !review.isCritic);
+    });
+
+      this.reviewService.getLatestReviews(gameId, 4).subscribe((reviews) => {
+        this.latestCriticReviews = reviews.filter(review => review.isCritic);
+        this.latestUserReviews = reviews.filter(review => !review.isCritic);
+      });
     });
 
     // Proveravamo da li je korisnik ulogovan
@@ -49,7 +64,6 @@ export class GameDetailComponent implements OnInit {
       if (status) {
         const user = this.userService.getCurrentUser();
         if (user && user.id !== undefined) {
-          this.isCritic = user.role === 'critic';
           this.loadUserReview(gameId, user.id);
         }
       }
@@ -57,16 +71,13 @@ export class GameDetailComponent implements OnInit {
   }
 
   // Učitavanje postojećeg review-a korisnika
-  loadUserReview(gameId: number | null, userId: number | null) {
-    if (gameId === null || userId === null) {
-      console.error('Invalid gameId or userId for loading user review.');
-      return;
-    }
+  loadUserReview(gameId: number, userId: number) {
     this.reviewService.getReviewByGameAndUser(gameId, userId).subscribe((review) => {
       if (review) {
         this.userReview = review;
         this.reviewScore = review.score;
         this.reviewText = review.content;
+        this.isReviewSubmitted = true;
       }
     });
   }
@@ -81,31 +92,34 @@ export class GameDetailComponent implements OnInit {
     this.showReviewModal = false;
   }
 
-  // Slanje novog review-a ili editovanje postojećeg
   submitReview() {
     if (!this.isLoggedIn) return;
-
+  
     const user = this.userService.getCurrentUser();
-    if (!user) return;
-
+    if (!user || user.id === undefined) {
+      console.error('User ID is undefined. Cannot submit review.');
+      return;
+    }
+  
     const newReview = {
       userId: user.id,
       gameId: this.game.id,
       score: this.reviewScore,
-      content: this.reviewText,
-      isCritic: this.isCritic
+      content: this.reviewText
     };
-
+  
     if (this.userReview) {
-      // Editovanje postojećeg review-a
+      // Edit existing review
       this.reviewService.updateReview(this.userReview.id, newReview).subscribe(updatedReview => {
         this.userReview = updatedReview;
+        this.isReviewSubmitted = true;  // Postavite stanje za potvrdu
         this.closeReviewModal();
       });
     } else {
-      // Kreiranje novog review-a
+      // Create new review
       this.reviewService.addReview(newReview).subscribe(savedReview => {
         this.userReview = savedReview;
+        this.isReviewSubmitted = true;  // Postavite stanje za potvrdu
         this.closeReviewModal();
       });
     }
