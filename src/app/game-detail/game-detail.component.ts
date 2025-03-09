@@ -14,7 +14,6 @@ export class GameDetailComponent implements OnInit {
   game!: Game;
   userReview: any = null;
   isLoggedIn = false;
-  isCritic = false;
   showReviewModal = false;
   reviewScore = 50;
   reviewText = '';
@@ -23,6 +22,8 @@ export class GameDetailComponent implements OnInit {
   latestUserReviews: Review[] = [];
   allReviewsCritics: Review[] = [];
   allReviewsUsers: Review[] = [];
+  allReviews: Review[] = [];
+  splitPlatforms: string[] = [];
 
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
@@ -46,14 +47,25 @@ export class GameDetailComponent implements OnInit {
     this.gameService.getGameById(gameId).subscribe((gameData: Game) => {
       this.game = gameData;
 
-      this.reviewService.getAllReviews().subscribe((reviews) => {
-        this.allReviewsCritics = reviews.filter(review => review.isCritic);
-        this.allReviewsUsers = reviews.filter(review => !review.isCritic);
+      this.splitPlatforms = gameData.platforms.split(',').map(platform => platform.trim());
+
+    //   this.reviewService.getAllReviews().subscribe((reviews) => {
+    //     this.allReviewsCritics = reviews.filter(review => review.isCritic);
+    //     this.allReviewsUsers = reviews.filter(review => !review.isCritic);
+    // });
+
+      this.reviewService.getReviewsByGameId(gameId).subscribe((reviews) => {
+        this.allReviewsCritics = reviews.filter(review => review.critic);
+        console.log("Critics:", this.allReviewsCritics);
+        this.allReviewsUsers = reviews.filter(review => !review.critic);
+        console.log("Users", this.allReviewsUsers);
     });
 
       this.reviewService.getLatestReviews(gameId, 4).subscribe((reviews) => {
-        this.latestCriticReviews = reviews.filter(review => review.isCritic);
-        this.latestUserReviews = reviews.filter(review => !review.isCritic);
+        this.latestCriticReviews = reviews.filter(review => review.critic);
+        console.log("Critics:", this.latestCriticReviews);
+        this.latestUserReviews = reviews.filter(review => !review.critic);
+        console.log("Users", this.latestUserReviews);
       });
     });
 
@@ -133,4 +145,31 @@ export class GameDetailComponent implements OnInit {
     if (score >= 75 && score < 90) return 'Generally Favorable';
     return 'Universal Acclaim';
   }
+
+  // Dodajte ovu promenljivu u vašu komponentu
+expandedReviews: { [key: number]: boolean } = {};
+
+// Proverite da li tekst prelazi maksimalnu dužinu
+isContentOverflow(content: string): boolean {
+    return content.length > 70; // Prilagodite broj karaktera po potrebi
+}
+
+// Promena stanja za prikaz celog teksta
+toggleReadMore(review: Review) {
+    this.expandedReviews[review.id] = !this.expandedReviews[review.id];
+}
+
+// Metoda za dobijanje broja recenzija za platformu
+getReviewCountForPlatform(platform: string): number {
+  return this.allReviews.filter(review => review.platform === platform).length;
+}
+
+// Metoda za dobijanje prosečnog skora za platformu
+getAverageScoreForPlatform(platform: string): number {
+  const reviewsForPlatform = this.allReviews.filter(review => review.platform === platform);
+  if (reviewsForPlatform.length === 0) return 0;
+
+  const totalScore = reviewsForPlatform.reduce((sum, review) => sum + review.score, 0);
+  return Math.round(totalScore / reviewsForPlatform.length);
+}
 }

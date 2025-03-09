@@ -9,8 +9,9 @@ export interface Review {
   gameId: number;
   score: number;
   content: string;
-  isCritic: boolean;
+  critic: boolean;
   createdAt: string;
+  platform: string;
   user: {
     id: number;
     username: string;
@@ -46,6 +47,10 @@ export class ReviewService {
 
   getAllReviews(): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}`);
+  }
+
+  getReviewsByGameId(gameId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}/by-game/${gameId}`);
   }
 
   getLatestReviews(gameId: number, limit: number = 4): Observable<Review[]> {

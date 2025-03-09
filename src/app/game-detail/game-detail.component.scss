@@ -127,17 +127,25 @@
         margin-top: 10px;
 
         .game_body_latest_critic_reviews {
-
+            
             h3 {
                 border-bottom: 1px solid;
                 padding-bottom: 20px;
+            }
+
+            .game_body_latest_critic_reviews_cards {
+                display: flex;
             }
 
             .game_body_latest_critic_reviews_card {
                 display: flex;
                 flex-direction: column;
                 width: 20%;
-                height: 250px;
+                height: 200px;
+
+                &.expanded {
+                    height: auto;
+                }
 
                 .game_body_latest_critic_reviews_card_header {
                     display: flex;
@@ -169,18 +177,34 @@
                 }
 
                 .game_body_latest_critic_reviews_card_text {
-                    padding: 5px;
+                    // padding: 5px;
                     color: #5e5e5e;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    .review-content {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 300px;
+                    }
+                    
+                    .review-content.expanded {
+                        white-space: normal;
+                        overflow: visible;
+                        text-overflow: clip;
+                    }
                 }
 
                 .game_body_latest_critic_reviews_card_footer {
                     display: flex;
                     align-items: center;
-                    font-size: 13px;
-                    justify-content: space-around;
+                    font-size: 15px;
+                    justify-content: left;
 
                     .game_body_latest_critic_reviews_card_footer_platform {
                         font-weight: 800;
+                        margin-left: 15px;
                     }
                 }
             }
@@ -222,6 +246,7 @@
 
                         .game_body_platforms_card_left_desc {
                             font-size: 15px;
+                            text-overflow: ellipsis;
                         }
                     }
 
@@ -284,7 +309,7 @@
                 }
 
                 .game_body_allReviews_card {
-                    width: 96%;
+                    width: 600px;
                     height: 300px;
                     background-color: #F2F2F2;
                     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
