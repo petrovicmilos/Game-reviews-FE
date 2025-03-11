@@ -66,6 +66,12 @@
 
         <textarea maxlength="200" [(ngModel)]="reviewText" placeholder="Write your review..."
             class="review-textarea"></textarea>
+            <div class="platform-selector">
+                <label for="platform">Select Platform:</label>
+                <select id="platform" [(ngModel)]="selectedPlatform" class="platform-dropdown">
+                    <option *ngFor="let platform of platforms" [value]="platform">{{ platform }}</option>
+                </select>
+            </div>
     </app-modal>
     <div class="game_body">
         <div class="game_body_latest_critic_reviews">
@@ -240,15 +246,15 @@
                 </div>
                 <div class="game_body_details_body_cards">
                     <div class="game_body_details_body_cards_card">
-                        <p><b>Platforms: </b>PC, Xbox Series X, Playstation 5</p>
-                        <p><b>Initial Release Date: </b>Dec 9, 2024</p>
+                        <p><b>Platforms: </b>{{ game.platforms }}</p>
+                        <p><b>Initial Release Date: </b>{{ game.releaseDate }}</p>
                     </div>
                     <div class="game_body_details_body_cards_card">
-                        <p><b>Developer: </b>MachineGames</p>
-                        <p><b>Publisher: </b>Bethesda Softworks</p>
+                        <p><b>Developer: </b>{{ game.publisher }}</p>
+                        <p><b>Publisher: </b>{{ game.publisher }}</p>
                     </div>
                     <div class="game_body_details_body_cards_card">
-                        <p><b>Genres: </b>First-Person Shooter</p>
+                        <p><b>Genres: </b>{{ game.genre }}</p>
                     </div>
                 </div>
             </div>

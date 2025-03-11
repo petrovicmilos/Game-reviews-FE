@@ -15,17 +15,23 @@
       <p>{{ news.content }}</p>
     </div>
     <div class="comments">
-      <div class="comments_title">3 Comments</div>
-      <div class="comment">
+      <div class="comments_title">{{ commentCount }} Comments</div>
+      <div class="comment" *ngFor="let comment of comments">
         <div class="comment_avatar"><img src="../../assets/bf1small.jpg" alt=""></div>
         <div class="comment_content">
-          <div class="comment_content_username">Miki Maus</div>
-          <div class="comment_content_text"><span>This is the best gaming forum and store ever!</span></div>
+          <div class="comment_content_username" *ngIf="comment.user">
+            <span *ngIf="comment.user">{{ comment.user.username }}</span>
+            <span *ngIf="!comment.user">Loading...</span>
+          </div>
+          <div class="comment_content_text"><span>{{ comment.content }}</span></div>
           <div class="comment_content_reply"><a href="#">REPLY</a></div>
         </div>
       </div>
-      <div class="comment">ovo je drugi komentar</div>
-      <div class="comment">ovo je treci komentar</div>
+      <div class="comment_form">
+        <div class="comment_form_textarea"><textarea [(ngModel)]="newComment" placeholder="Write your comment..."
+            class="comment-textarea"></textarea></div>
+        <div class="comment_form_button"><app-button text="Comment" (click)="submitComment()"></app-button></div>
+       </div>
     </div>
   </div>
   <div class="news_detail_right">
@@ -33,11 +39,8 @@
       <h3>Popular Articles</h3>
     </div>
     <div class="news_detail_right_articles">
-      <div
-        class="news_detail_right_articles_item"
-        *ngFor="let article of popularArticles"
-        [routerLink]="['/post', article.id]"
-      >
+      <div class="news_detail_right_articles_item" *ngFor="let article of popularArticles"
+        [routerLink]="['/post', article.id]">
         <div class="news_detail_right_articles_item_title">
           <h4>{{ article.title }}</h4>
         </div>
@@ -60,7 +63,8 @@
     </div>
     <div class="news_detail_right_topfivegames">
       <h4>Top 5 Best Games</h4>
-      <div class="news_detail_right_topfivegames_item" *ngFor="let game of topFiveGames; let i = index" [routerLink]="['/games', game.id]">
+      <div class="news_detail_right_topfivegames_item" *ngFor="let game of topFiveGames; let i = index"
+        [routerLink]="['/games', game.id]">
         <div class="news_detail_right_topfivegames_item_thumb">
           <div class="rank-circle">{{ i + 1 }}</div>
           <img [src]="game.image" alt="{{ game.title }}" />

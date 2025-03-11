@@ -12,6 +12,8 @@ export interface Game {
   averageAudienceScore: number;
   image: string;
   platforms: string;
+  developer: string;
+  publisher: string;
 }
 
 @Injectable({

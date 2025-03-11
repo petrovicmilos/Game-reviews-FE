@@ -7,25 +7,32 @@
     <div class="post_detail_left_info">
       <p>
         <span>{{ postContent.postingDate }}</span>
-        <span><fa-icon [icon]="faHeart" class="light-icon"></fa-icon> 100</span>
-        <span><fa-icon [icon]="faComment" class="light-icon"></fa-icon> 3</span>
+        <span><fa-icon [icon]="faHeart" class="light-icon"></fa-icon> {{ postContent.likes }}</span>
+        <span><fa-icon [icon]="faComment" class="light-icon"></fa-icon> {{ commentCount }}</span>
       </p>
     </div>
     <div class="post_detail_left_content">
-      <p>{{ postContent.text }}</p>
+      <p>{{ postContent.content }}</p>
     </div>
     <div class="comments">
-      <div class="comments_title">3 Comments</div>
-      <div class="comment">
+      <div class="comments_title">{{ commentCount }} Comments</div>
+      <div class="comment" *ngFor="let comment of comments">
         <div class="comment_avatar"><img src="../../assets/bf1small.jpg" alt=""></div>
         <div class="comment_content">
-          <div class="comment_content_username">Miki Maus</div>
-          <div class="comment_content_text"><span>This is the best gaming forum and store ever!</span></div>
+          <div class="comment_content_username">
+            <!-- Prikažite korisničko ime samo ako su podaci učitani -->
+            <span *ngIf="comment.user">{{ comment.user.username }}</span>
+            <span *ngIf="!comment.user">Loading...</span>
+          </div>
+          <div class="comment_content_text"><span>{{ comment.content }}</span></div>
           <div class="comment_content_reply"><a href="#">REPLY</a></div>
         </div>
       </div>
-      <div class="comment">ovo je drugi komentar</div>
-      <div class="comment">ovo je treci komentar</div>
+      <div class="comment_form">
+        <div class="comment_form_textarea"><textarea [(ngModel)]="newComment" placeholder="Write your comment..."
+            class="comment-textarea"></textarea></div>
+        <div class="comment_form_button"><app-button text="Comment" (click)="submitComment()"></app-button></div>
+       </div>
     </div>
   </div>
   <div class="post_detail_right">
@@ -33,11 +40,8 @@
       <h3>Popular Articles</h3>
     </div>
     <div class="post_detail_right_articles">
-      <div
-        class="post_detail_right_articles_item"
-        *ngFor="let article of popularArticles"
-        [routerLink]="['/post', article.id]"
-      >
+      <div class="post_detail_right_articles_item" *ngFor="let article of popularArticles"
+        [routerLink]="['/post', article.id]">
         <div class="post_detail_right_articles_item_title">
           <h4>{{ article.title }}</h4>
         </div>
@@ -50,7 +54,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="post_detail_right_newsletter">
       <div class="post_detail_right_newsletter_title">
         <h3>Subscribe For Newsletter</h3>
@@ -61,7 +65,8 @@
     </div>
     <div class="post_detail_right_topfivegames">
       <h4>Top 5 Best Games</h4>
-      <div class="post_detail_right_topfivegames_item" *ngFor="let game of topFiveGames; let i = index" [routerLink]="['/games', game.id]">
+      <div class="post_detail_right_topfivegames_item" *ngFor="let game of topFiveGames; let i = index"
+        [routerLink]="['/games', game.id]">
         <div class="post_detail_right_topfivegames_item_thumb">
           <div class="rank-circle">{{ i + 1 }}</div>
           <img [src]="game.image" alt="{{ game.title }}" />

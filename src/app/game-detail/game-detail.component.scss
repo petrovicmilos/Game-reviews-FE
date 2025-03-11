@@ -510,5 +510,26 @@
       cursor: pointer;
     }
   }
+
+  .platform-selector {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.platform-dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.platform-dropdown:focus {
+    outline: none;
+    border-color: #9b6530;
+}
   
 }

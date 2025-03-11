@@ -65,4 +65,7 @@ export class UserService {
   private checkIfAdmin(): boolean {
     return this.getRole() === 'admin';
   }
+  getUserById(userId: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${userId}`);
+  }
 }

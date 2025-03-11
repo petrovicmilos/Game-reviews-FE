@@ -24,6 +24,19 @@ export class GameDetailComponent implements OnInit {
   allReviewsUsers: Review[] = [];
   allReviews: Review[] = [];
   splitPlatforms: string[] = [];
+  selectedPlatform: string = ''; // Čuva izabranu platformu
+    platforms: string[] = [       // Lista popularnih platformi
+        'PC',
+        'PlayStation 5',
+        'Xbox Series X',
+        'Nintendo Switch',
+        'PlayStation 4',
+        'Xbox One',
+        'iOS',
+        'Android',
+        'Mac',
+        'Linux'
+    ];
 
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
@@ -117,7 +130,8 @@ export class GameDetailComponent implements OnInit {
       userId: user.id,
       gameId: this.game.id,
       score: this.reviewScore,
-      content: this.reviewText
+      content: this.reviewText,
+      platform: this.selectedPlatform
     };
   
     if (this.userReview) {
