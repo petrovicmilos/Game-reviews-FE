@@ -10,13 +10,17 @@ export class AuthGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router) {}
 
   canActivate(): boolean {
-    const user = this.userService.getCurrentUser();
-    if (user && user.role === 'admin') {
-      return true; // Ako je admin, dozvoli pristup
-    } else {
-      alert('Access denied. Admins only.');
-      this.router.navigate(['/']); // Ako nije admin, preusmeri na home
-      return false;
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const role = this.userService.getRole();
+      if (role === 'admin') {
+        return true; // ✅ token postoji i korisnik je admin
+      }
     }
+
+    alert('Access denied. Admins only.');
+    this.router.navigate(['/']);
+    return false;
   }
 }

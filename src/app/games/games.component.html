@@ -4,7 +4,7 @@
   </div>
   <div class="games_grid">
     <div class="games_grid_card" *ngFor="let game of allGames" [routerLink]="['/games', game.id]">
-      <img [src]="game.image" alt="Review Image">
+      <img [src]="getImageUrl(game.image)" alt="Review Image">
       <div><b>{{ game.title }}</b></div>
       <div
         class="games_grid_card_score"

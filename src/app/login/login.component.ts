@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService, User } from '../services/user.service';
+import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,9 +15,8 @@ export class LoginComponent {
 
   login(): void {
     this.userService.login(this.email, this.password).subscribe(
-      (user) => {
-        alert(`Welcome, ${user.username}!`);
-        localStorage.setItem('loggedInUser', JSON.stringify(user)); // Čuvanje sesije
+      () => {
+        alert('Welcome!');
         this.router.navigate(['/']);
       },
       () => alert('Invalid credentials, please try again.')

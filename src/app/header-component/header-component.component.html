@@ -14,7 +14,6 @@
           <fa-icon [icon]="faSearch" (click)="onSearchClick()"></fa-icon>
         </form>
   
-        <!-- Dropdown -->
         <div class="search-dropdown" *ngIf="showDropdown">
           <div class="search-result" *ngFor="let result of searchResults" (click)="navigateToResult(result)">
             <span>{{ result.title }}</span>

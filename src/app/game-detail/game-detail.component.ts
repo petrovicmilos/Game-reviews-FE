@@ -25,60 +25,58 @@ export class GameDetailComponent implements OnInit {
   allReviews: Review[] = [];
   splitPlatforms: string[] = [];
   selectedPlatform: string = ''; // Čuva izabranu platformu
-    platforms: string[] = [       // Lista popularnih platformi
-        'PC',
-        'PlayStation 5',
-        'Xbox Series X',
-        'Nintendo Switch',
-        'PlayStation 4',
-        'Xbox One',
-        'iOS',
-        'Android',
-        'Mac',
-        'Linux'
-    ];
+  platforms: string[] = [       // Lista popularnih platformi
+    'PC',
+    'PlayStation 5',
+    'Xbox Series X',
+    'Nintendo Switch',
+    'PlayStation 4',
+    'Xbox One',
+    'iOS',
+    'Android',
+    'Mac',
+    'Linux'
+  ];
 
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
+  public readonly TRUNCATE_LENGTH = 10;
 
   constructor(
     private route: ActivatedRoute,
     private gameService: GamesService,
     private reviewService: ReviewService,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const gameIdParam = this.route.snapshot.paramMap.get('id');
-  const gameId = gameIdParam ? +gameIdParam : null;
+    const gameId = gameIdParam ? +gameIdParam : null;
 
-  if (!gameId) {
-    console.error('Game ID is undefined or invalid.');
-    return;
-  }
+    if (!gameId) {
+      console.error('Game ID is undefined or invalid.');
+      return;
+    }
     // Učitavanje igre
     this.gameService.getGameById(gameId).subscribe((gameData: Game) => {
       this.game = gameData;
 
       this.splitPlatforms = gameData.platforms.split(',').map(platform => platform.trim());
 
-    //   this.reviewService.getAllReviews().subscribe((reviews) => {
-    //     this.allReviewsCritics = reviews.filter(review => review.isCritic);
-    //     this.allReviewsUsers = reviews.filter(review => !review.isCritic);
-    // });
+      //   this.reviewService.getAllReviews().subscribe((reviews) => {
+      //     this.allReviewsCritics = reviews.filter(review => review.isCritic);
+      //     this.allReviewsUsers = reviews.filter(review => !review.isCritic);
+      // });
 
       this.reviewService.getReviewsByGameId(gameId).subscribe((reviews) => {
         this.allReviewsCritics = reviews.filter(review => review.critic);
-        console.log("Critics:", this.allReviewsCritics);
         this.allReviewsUsers = reviews.filter(review => !review.critic);
-        console.log("Users", this.allReviewsUsers);
-    });
+        this.allReviews = reviews;
+      });
 
       this.reviewService.getLatestReviews(gameId, 4).subscribe((reviews) => {
         this.latestCriticReviews = reviews.filter(review => review.critic);
-        console.log("Critics:", this.latestCriticReviews);
         this.latestUserReviews = reviews.filter(review => !review.critic);
-        console.log("Users", this.latestUserReviews);
       });
     });
 
@@ -119,13 +117,13 @@ export class GameDetailComponent implements OnInit {
 
   submitReview() {
     if (!this.isLoggedIn) return;
-  
+
     const user = this.userService.getCurrentUser();
     if (!user || user.id === undefined) {
       console.error('User ID is undefined. Cannot submit review.');
       return;
     }
-  
+
     const newReview = {
       userId: user.id,
       gameId: this.game.id,
@@ -133,7 +131,7 @@ export class GameDetailComponent implements OnInit {
       content: this.reviewText,
       platform: this.selectedPlatform
     };
-  
+
     if (this.userReview) {
       // Edit existing review
       this.reviewService.updateReview(this.userReview.id, newReview).subscribe(updatedReview => {
@@ -160,30 +158,32 @@ export class GameDetailComponent implements OnInit {
     return 'Universal Acclaim';
   }
 
-  // Dodajte ovu promenljivu u vašu komponentu
-expandedReviews: { [key: number]: boolean } = {};
+  expandedReviews: { [key: number]: boolean } = {};
 
-// Proverite da li tekst prelazi maksimalnu dužinu
-isContentOverflow(content: string): boolean {
-    return content.length > 70; // Prilagodite broj karaktera po potrebi
-}
+  isContentOverflow(content: string): boolean {
+    return content.length > this.TRUNCATE_LENGTH;
+  }
 
-// Promena stanja za prikaz celog teksta
-toggleReadMore(review: Review) {
+  toggleReadMore(review: Review) {
     this.expandedReviews[review.id] = !this.expandedReviews[review.id];
-}
+  }
 
-// Metoda za dobijanje broja recenzija za platformu
-getReviewCountForPlatform(platform: string): number {
-  return this.allReviews.filter(review => review.platform === platform).length;
-}
+  // Metoda za dobijanje broja recenzija za platformu
+  getReviewCountForPlatform(platform: string): number {
+    return this.allReviews.filter(review => review.platform === platform).length;
+  }
 
-// Metoda za dobijanje prosečnog skora za platformu
-getAverageScoreForPlatform(platform: string): number {
-  const reviewsForPlatform = this.allReviews.filter(review => review.platform === platform);
-  if (reviewsForPlatform.length === 0) return 0;
+  // Metoda za dobijanje prosečnog skora za platformu
+  getAverageScoreForPlatform(platform: string): number {
+    const reviewsForPlatform = this.allReviews.filter(review => review.platform === platform);
+    if (reviewsForPlatform.length === 0) return 0;
 
-  const totalScore = reviewsForPlatform.reduce((sum, review) => sum + review.score, 0);
-  return Math.round(totalScore / reviewsForPlatform.length);
-}
+    const totalScore = reviewsForPlatform.reduce((sum, review) => sum + review.score, 0);
+    return Math.round(totalScore / reviewsForPlatform.length);
+  }
+
+  getResolvedImageUrl(image: string): string {
+    return this.gameService.getImageUrl(image);
+  }
+
 }

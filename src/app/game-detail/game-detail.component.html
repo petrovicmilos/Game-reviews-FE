@@ -1,6 +1,6 @@
-<div class="game_detail">
+<div class="game_detail" *ngIf="game">
     <div class="game_header">
-        <div class="game_header_left"><img [src]="game.image" alt="{{ game.title }}" /></div>
+        <div class="game_header_left"><img [src]="getResolvedImageUrl(game.image)" alt="{{ game.title }}" /></div>
         <div class="game_header_right">
             <div class="game_header_right_title">
                 <h2>{{ game.title }}</h2>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="game_body_latest_critic_reviews_card_text">
                         <p class="review-content" [ngClass]="{'expanded': expandedReviews[review.id]}">{{
-                            expandedReviews[review.id] ? review.content : (review.content | slice:0:100) + '...' }}</p>
+                            expandedReviews[review.id] ? review.content : (review.content | slice:0:TRUNCATE_LENGTH) + '...' }}</p>
                         <app-button *ngIf="isContentOverflow(review.content)"
                             [text]="expandedReviews[review.id] ? 'Read Less' : 'Read More'" type="button"
                             (click)="toggleReadMore(review)" color="#9b6530" hoverColor="#b77a37" textColor="white"

@@ -39,7 +39,7 @@ export class RegisterComponent {
       },
       (error) => {
         console.log('Greška prilikom registracije:', error);
-        alert('Registration failed, email might be in use.')
+        alert('Registration failed, email might be in use.');
       }
     );
   }

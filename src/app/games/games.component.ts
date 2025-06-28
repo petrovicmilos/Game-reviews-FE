@@ -16,4 +16,14 @@ export class GamesComponent implements OnInit {
       this.allGames = games;
     });
   }
+
+  getImageUrl(imagePath: string): string {
+  if (imagePath.startsWith('../assets/') || imagePath.startsWith('assets/')) {
+    return imagePath;
+  } else if (imagePath.startsWith('/uploads/')) {
+    return 'http://localhost:8080' + imagePath;
+  }
+  return imagePath; // fallback
+}
+
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Game {
   id: number;
@@ -20,7 +21,7 @@ export interface Game {
   providedIn: 'root',
 })
 export class GamesService {
-  private apiUrl = 'http://localhost:8080/games'; // API endpoint iz Spring Boot-a
+  private apiUrl = `${environment.apiUrl}/games`;
 
   constructor(private http: HttpClient) {}
 
@@ -52,4 +53,16 @@ export class GamesService {
   searchGames(query: string) {
     return this.http.get<any[]>(`${this.apiUrl}/search?query=${query}`);
   }
+
+  getImageUrl(imagePath: string): string {
+  if (!imagePath) return 'assets/default.jpg';
+
+  if (imagePath.includes('assets')) {
+    return imagePath; // koristi direktno assets putanju
+  }
+
+  // Dodaj backend host ispred /uploads/
+  return `${environment.apiUrl}${imagePath}`;
+}
+
 }

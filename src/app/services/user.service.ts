@@ -17,55 +17,86 @@ export interface User {
 export class UserService {
   private apiUrl = 'http://localhost:8080/users';
 
-  // BehaviorSubject za praćenje statusa prijave
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-  isLoggedIn$ = this.isLoggedInSubject.asObservable(); // Observable koji komponente mogu pratiti
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  // BehaviorSubject za praćenje da li je korisnik admin
   private isAdminSubject = new BehaviorSubject<boolean>(this.checkIfAdmin());
   isAdmin$ = this.isAdminSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   register(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/register`, user);
   }
 
-  login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/login`, { email, password }).pipe(
-      // Kada korisnik uspešno uđe, sačuvaj ga u localStorage i ažuriraj BehaviorSubject
-      tap((user) => {
-        localStorage.setItem('loggedInUser', JSON.stringify(user));
-        this.isLoggedInSubject.next(true); // Obaveštava sve komponente o promeni statusa
-        this.isAdminSubject.next(user.role === 'admin');
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password }).pipe(
+      tap((response) => {
+        const token = response.token;
+        localStorage.setItem('token', token);
+        this.isLoggedInSubject.next(true);
+        this.isAdminSubject.next(this.decodeRoleFromToken(token) === 'admin');
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
     this.isAdminSubject.next(false);
   }
 
   private hasToken(): boolean {
-    return this.getCurrentUser() !== null;
+    return !!localStorage.getItem('token');
   }
 
   getCurrentUser(): User | null {
-    const userData = localStorage.getItem('loggedInUser');
-    return userData ? JSON.parse(userData) : null;
+    const payload = this.decodeToken();
+    if (!payload) return null;
+
+    return {
+      id: payload.id,
+      username: payload.username || '',
+      email: payload.sub,
+      password: '',
+      isCritic: payload.isCritic || false,
+      role: payload.role || 'user',
+    };
+
   }
 
   getRole(): string | null {
-    const user = this.getCurrentUser();
-    return user ? user.role : null;
+    const payload = this.decodeToken();
+    return payload?.role || null;
   }
 
   private checkIfAdmin(): boolean {
     return this.getRole() === 'admin';
   }
+
   getUserById(userId: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${userId}`);
+  }
+
+  private decodeToken(): any {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      const payload = token.split('.')[1];
+      const decoded = atob(payload);
+      return JSON.parse(decoded);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  decodeRoleFromToken(token: string): string {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role || 'user';
+    } catch (e) {
+      return 'user';
+    }
   }
 }
